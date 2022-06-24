@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+### Node version
+Recommended node version 14.17.0
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# SuperComplex Repository Work Standard
 
-## Available Scripts
+Hi developer in order ro protect the integrity of the code, have maximum efficiency and, prevent big failures to the ser flow and to the final users this si the standard to work with this repository:
 
-In the project directory, you can run:
+## Github
 
-### `npm start`
+We work using the Gitflow Standard to manage branches.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The project will have a development branch and a main branch
 
-### `npm test`
+### How to work with gitflow
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Create a branch using the pattern feature/* from the development branch. Please use meaningful syntax for the name. Do not use branches like feature/dev-milton or feature/milton, The purpose of gitflow is to have an easy track of the project progress.
+- Make multiple commits on that branch (as meany as you wish). We do not want a huge commits on those branches, nothing like a single commit that represents one or two days of work (coding work, research work not included). We had seen on the past several days of work lost due a bad huge commit.
+- To finish a feature (functionality) create a pull request (PR) to the development branch (or any other branch specified by the repository admin). Send the PR link to the repository admin for review.
+- A feature is considered complete if it runs on the CI/CD pipeline. Running on local does not count.
+- The PR will be squashed and merged into the target branch, so all the feature will be represented just ofr one clean commit into the repository hierarchy.
+- The feature branches merged into the target branch well be saved for 30 days in case of failure or research. After this period will be deleted from the repository.
+- Push your code frequently.
 
-### `npm run build`
+## Package manger
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+For this project use the npm manager, or please specify the package manager you want to use, in order all the team use the same configuration.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Adding new libraries
+For first option always try to use the already existing libraries. Try to dont add redundancy on libraries, for example two libraries to manages base64 string.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you think there is a better option to replace an already existing library, please expose your arguments first, we are open to suggestions, but not to have unnecessary code.
 
-### `npm run eject`
+## Code practices
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Do not leave commented out code (if is a few lines is ok, but not more than 20 lines of code). If the code does not work delete it or add a @deprecated note.
+- We code for humans, try to avoid classes and components than more 1000 lines of code.
+- Use meaningful syntax for functions and variables.
+- Do not add api key, or sensitive information on the code. Use the .env file instead. Do not forget to add it to .gitignore.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Suggestions
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+We are open to the suggestions, always share your thoughts. ASk for any resource you need, report if you have a blocker of if the requirements are not clear.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
