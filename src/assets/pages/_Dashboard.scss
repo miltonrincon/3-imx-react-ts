@@ -1,0 +1,120 @@
+@import '@/assets/common.scss';
+.dashboard {
+  width: 100%;
+  height: 100vh;
+  background-color: $black;
+}
+.dashboard-content-container{
+  flex: 1 1 auto;
+  height: 100vh;
+}
+.modal-container{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal-v1{
+  padding: 40px 50px;
+  position: relative;
+  background-color: #272727;
+  border-radius: 24px;
+  border: none;
+  &.gradient-1{
+    &:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 4px;
+      background: linear-gradient(135deg,
+                              #E8A3FF 0%,
+                              #A8BFFF 15%,
+                              #2EFCA8 45%,
+                              #A8BFFF 75%,
+                              #E8A3FF 90%,
+                              #E8A3FF 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+  }
+  .modal-v1-body{
+    margin-bottom: 40px;
+  }
+  .connect-title{
+    font-family: 'Sarpanch';
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.4;
+    text-align: center;
+    color: $white;
+    margin-bottom: 8px;
+  }
+  .connect-text{
+    font-family: 'Gotham';
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+    color: #FFFFFF;
+    max-width: 405px;
+    margin: 0 auto 20px;
+  }
+  .btn-container{
+    display: flex;
+    justify-content: center;
+  }
+  .connect-v1-btn{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 65px;
+    border: none;
+    border-radius: 67px;
+    padding: 10px 45px;
+    font-family: 'Sarpanch';
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.4;
+    text-align: center;
+    background: $black;
+    color: $white;
+    cursor: pointer;
+    &:disabled{
+      cursor: initial;
+      background: #D8D8D8;
+      color: #7A7A7A;
+      &.gradient-1{
+        &:before {
+          content: none;
+        }
+      }
+    }
+    &.gradient-1{
+      position: relative;
+      &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 2px;
+        background: linear-gradient(135deg,
+                                #E8A3FF 0%,
+                                #A8BFFF 15%,
+                                #2EFCA8 45%,
+                                #A8BFFF 75%,
+                                #E8A3FF 90%,
+                                #E8A3FF 100%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+    }
+  }
+}

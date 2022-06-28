@@ -1,0 +1,12 @@
+@import 'assets/common.scss';
+.App{
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  // background-color: #000;
+  background-color: $app-background-color;
+}
+.empty-layout {
+  width: 100%;
+  min-height: 100vh;
+}

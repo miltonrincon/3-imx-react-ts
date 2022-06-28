@@ -1,0 +1,9 @@
+.wrapper {
+  margin: 0 auto;
+  max-width: $maxcontentwidth;
+}
+.sm-only {
+  @include breakpoint(xl) {
+    display: none;
+  }
+}
