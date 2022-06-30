@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import WalletHeader from "../components/Wallet/WalletHeader";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+  let navigate = useNavigate();
   let timerProgress: any;
   const vidRef = useRef<HTMLVideoElement>(null);
   const [progress, setProgress] = useState(0);
@@ -14,16 +15,17 @@ const HomePage = () => {
     setStep(n + 1);
   }
   const metamaskConnect = () => {
-    //       console.log('metamaskConnect');
-    //       this.channelOn = true;
+    console.log('metamaskConnect');
+    setChannelOn(true);
   }
   const coinbaseConnect = () => {
-    //       console.log('coinbaseConnect');
-    //       this.channelOn = true;
+    console.log('coinbaseConnect');
+    setChannelOn(true);
   }
   const channelFunc = () => {
-    //       console.log('Channel the Funk');
-    //       this.$router.push('/dashboard');
+    console.log('Channel the Funk');
+    navigate('/dashboard');
+
   }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -149,7 +151,7 @@ const HomePage = () => {
                   </button>
                   <button
                     className="connect-btn gradient-1"
-                    onClick={()=>coinbaseConnect}  
+                    onClick={()=>coinbaseConnect()}  
                   >
                     CONNECT WITH
                     <img className="btn-icon" src="/coinbase.png" alt="coinbase"/>
@@ -177,35 +179,7 @@ const HomePage = () => {
 
 export default HomePage
 
-// export default {
-//   data() {
-//     return {
 
-//       layout: 'custom',
-//     };
-//   },
-//   mounted() {
-//     this.startAnimation();
-//   },
-//   methods: {
-//     startAnimation() {
-//       const animeInterval = setInterval(() => {
-//         if (this.progress < 100) this.progress += 1;
-//         else {
-//           clearInterval(animeInterval);
-//           this.nextStep(this.step);
-//         }
-//       }, 50);
-//     },
-
-//     metamaskConnect() {
-//       console.log('metamaskConnect');
-//       this.channelOn = true;
-//     },
-//     coinbaseConnect() {
-//       console.log('coinbaseConnect');
-//       this.channelOn = true;
-//     },
 //     channelFunc() {
 //       console.log('Channel the Funk');
 //       this.$router.push('/dashboard');
