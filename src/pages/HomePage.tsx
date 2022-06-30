@@ -9,6 +9,7 @@ const HomePage = () => {
   const [progress, setProgress] = useState(0);
   const [step, setStep] = useState(0);
   const [channelOn, setChannelOn] = useState(false);
+  const frequencyTimerProgress = 100;
   
   
   function nextStep(n: number) {
@@ -32,7 +33,7 @@ const HomePage = () => {
   const updateProgress = () => {
     timerProgress = setInterval(() => {
       setProgress(prevProgress => prevProgress + 1)
-    }, 50)
+    }, frequencyTimerProgress)
     if (progress === 100) {
       clearInterval(timerProgress);
       nextStep(step);
@@ -67,7 +68,7 @@ const HomePage = () => {
   return (
     <div className={`start-page-container step-${+step}`}>
 
-      {step<3 && (
+      {/* {step<3 && (
         <button
           className="temp-next-screen"
           onClick={()=>nextStep(step)}
@@ -82,7 +83,7 @@ const HomePage = () => {
         >
           next step(just for tests)
         </Link>
-      )}
+      )} */}
 
       {[0,1].includes(step) && (
         <div className="start-page-content">
@@ -92,7 +93,7 @@ const HomePage = () => {
           <h2 className="p-title">Earn Bluechip NFTs with Funky</h2>
           { step===0 && (
             <div className="progress-counter">
-              ${progress} %
+              {`${progress} %`}
             </div>
           )}
           { step===1 && (
@@ -128,7 +129,7 @@ const HomePage = () => {
 
       { step===3 && (
         <div className="start-page-connect-content">
-          <div className="content-img-container">
+          <div className="connect-img-container">
             <img className="connect-img" src="/talking.gif" alt="talking"/>
           </div>
           <div className="modal-v1 gradient-1">
@@ -178,22 +179,3 @@ const HomePage = () => {
 }
 
 export default HomePage
-
-
-//     channelFunc() {
-//       console.log('Channel the Funk');
-//       this.$router.push('/dashboard');
-//     },
-//     startVideoIntroduction(step) {
-//       this.media = document.querySelector('.intro-video');
-//       this.nextStep(step);
-//       this.media.play();
-//     },
-//     skipVideo(step) {
-//       this.nextStep(step);
-//       this.media.pause();
-//       this.media.currentTime = 0;
-//     },
-//     
-//   },
-// };

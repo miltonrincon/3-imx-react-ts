@@ -9,7 +9,10 @@ const Dashboard = () => {
     <div className="dashboard">
       <div className="dashboard-content-container">
         {welcomeModal&& (
-          <div className="modal-container"> {/* v-if="welcomeModal==true"  */}
+          <div className="modal-container">
+            <div className="connect-img-container">
+              <img className="connect-img" src="/talking.gif" alt="talking"/>
+            </div>
             <div className="modal-v1 gradient-1">
               <div className="modal-v1-body">
                 <div className="connect-title">
@@ -38,23 +41,3 @@ const Dashboard = () => {
 }
 
 export default Dashboard
-
-{/* <script>
-export default {
-  name: 'DashboardPage',
-  layout: 'dashboard',
-  head: {
-    title: 'Tunky Dashboard',
-  },
-  data() {
-    return {
-      welcomeModal: true,
-    };
-  },
-  methods: {
-    earnQuest() {
-      this.welcomeModal = false;
-    },
-  },
-};
-</script> */}
