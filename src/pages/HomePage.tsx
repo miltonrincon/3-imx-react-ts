@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import WalletHeader from "../components/Wallet/WalletHeader";
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
+  let timerProgress: any;
+  const vidRef = useRef<HTMLVideoElement>(null);
   const [progress, setProgress] = useState(0);
   const [step, setStep] = useState(0);
   const [channelOn, setChannelOn] = useState(false);
-  useEffect(() => {     
-    // use here call to BE and get collectionArr with all info about collection
-    // setCollectionArr( dataFromBE... )
-  return () => {};
-  }, []);
-  const nextStep = (n:number)=> {
+  
+  
+  function nextStep(n: number) {
     setStep(n + 1);
-  }
-  const endVideoIntroduction = (step:number) => {
-    nextStep(step);
-    // media.currentTime = 0;
   }
   const metamaskConnect = () => {
     //       console.log('metamaskConnect');
@@ -30,16 +25,43 @@ const HomePage = () => {
     //       console.log('Channel the Funk');
     //       this.$router.push('/dashboard');
   }
-  const startAnimation = () => {
-    const animeInterval = setInterval(() => {
-      if (progress < 100) setProgress(prev=>prev + 1);
-      else {
-    clearInterval(animeInterval);
-        nextStep(step);
-        }
-    }, 50);
-  }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const updateProgress = () => {
+    timerProgress = setInterval(() => {
+      setProgress(prevProgress => prevProgress + 1)
+    }, 50)
+    if (progress === 100) {
+      clearInterval(timerProgress);
+      nextStep(step);
+    }
+  }
+  const skipVideo = (step:number) => {
+    if(vidRef.current) { 
+      vidRef.current.pause(); vidRef.current.currentTime = 0;
+    }
+    nextStep(step);
+  }
+  const endVideoIntroduction = (step:number) => {
+    nextStep(step);
+    if(vidRef.current) { 
+      vidRef.current.currentTime = 0;
+    }
+  }
+  useEffect(() => {
+    updateProgress();
+    return () => clearInterval(timerProgress)
+  }, [progress])
+  
+  const startVideoIntroduction = () => {
+    if(vidRef.current) { vidRef.current.play(); }
+  }
+  useEffect(() => {
+    console.log("step:",step)
+    if(step === 2){
+      startVideoIntroduction();
+    }
+  }, [step])
   return (
     <div className={`start-page-container step-${+step}`}>
 
@@ -73,9 +95,8 @@ const HomePage = () => {
           )}
           { step===1 && (
             <button
-              // v-show='step===1'
               className="start-btn gradient-1"
-              // @click="startVideoIntroduction(step)"
+              onClick = {()=>nextStep(step)}
             >
               Release the Funk
             </button>
@@ -85,7 +106,9 @@ const HomePage = () => {
 
       { step===2 && (
         <div className="start-page-video-content">
-          <video className="intro-video"
+          <video
+            ref={vidRef}
+            className="intro-video"
             onEnded= {()=>endVideoIntroduction(step)}
           >
             <source src="/tunky_video_1.mp4" type="video/mp4" />
@@ -93,7 +116,7 @@ const HomePage = () => {
           <div className="btn-container">
             <button
               className="start-btn gradient-1 skip-video"
-              // @click="skipVideo(step)"
+              onClick={()=>skipVideo(step)}
             >
               Skip Video
             </button>
