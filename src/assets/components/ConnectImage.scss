@@ -1,11 +1,10 @@
 .connect-img-container{
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-height: 0;
   width: 200%;
-  max-width: 800px;
+  max-width: 630px;
   @include breakpoint(xl){
     width: 100%;
-    max-width: 630px;
   }
   margin-top: -65px;
   .connect-img{
