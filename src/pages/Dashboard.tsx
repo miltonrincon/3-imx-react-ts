@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-
 const Dashboard = () => {
   const [welcomeModal, setWelcomeModal] = useState(true);
   const earnQuest = () => {
