@@ -1,18 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import WalletHeader from "../components/Wallet/WalletHeader";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Header from "components/Header/Header";
+import Counter from "components/Counter/Counter";
 
 const HomePage = () => {
   let navigate = useNavigate();
-  let timerProgress: any;
   const vidRef = useRef<HTMLVideoElement>(null);
-  const [progress, setProgress] = useState(0);
   const [step, setStep] = useState(0);
   const [channelOn, setChannelOn] = useState(false);
-  const frequencyTimerProgress = 90;
-  
-  
   function nextStep(n: number) {
     setStep(n + 1);
   }
@@ -29,17 +25,6 @@ const HomePage = () => {
     navigate('/dashboard');
 
   }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const updateProgress = () => {
-    timerProgress = setInterval(() => {
-      setProgress(prevProgress => prevProgress + 1)
-    }, frequencyTimerProgress)
-    if (progress === 100) {
-      clearInterval(timerProgress);
-      nextStep(step);
-    }
-  }
   const skipVideo = (step:number) => {
     if(vidRef.current) { 
       vidRef.current.pause(); vidRef.current.currentTime = 0;
@@ -52,11 +37,6 @@ const HomePage = () => {
       vidRef.current.currentTime = 0;
     }
   }
-  useEffect(() => {
-    updateProgress();
-    return () => clearInterval(timerProgress)
-  }, [progress])
-  
   const startVideoIntroduction = () => {
     if(vidRef.current) { vidRef.current.play(); }
   }
@@ -95,9 +75,10 @@ const HomePage = () => {
             </div>
             <h2 className="p-title">Earn Bluechip NFTs with Funky</h2>
             { step===0 && (
-              <div className="progress-counter">
-                {`${progress} %`}
-              </div>
+              <Counter
+                step = {step}
+                nextStep = {nextStep}
+              />
             )}
             { step===1 && (
               <button

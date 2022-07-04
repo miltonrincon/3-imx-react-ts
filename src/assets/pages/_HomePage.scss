@@ -54,19 +54,6 @@
     margin-bottom: 20px;
   }
 }
-.progress-counter{
-  font-family: 'Sarpanch';
-  font-weight: 700;
-  font-size: 38px;
-  @include breakpoint(sm){
-    font-size: 48px;
-  }
-  @include breakpoint(xl){
-    font-size: 64px;
-  }
-  line-height: 1.4;
-  color: $white;
-}
 .bottom-bg-container{
   position: absolute;
   bottom: 0;
