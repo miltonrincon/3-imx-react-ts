@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import Header from "components/Header/Header";
 import Counter from "components/Counter/Counter";
 import BottomAnime from "components/BottomAnime/BottomAnime";
+import GrModal from "components/GrModal/GrModal";
+import GrModalBody from "components/GrModal/GrModalBody/GrModalBody";
+import GrModalFooter from "components/GrModal/GrModalFooter/GrModalFooter";
 
 const HomePage = () => {
   let navigate = useNavigate();
@@ -117,8 +120,8 @@ const HomePage = () => {
             <div className="connect-img-container">
               <img className="connect-img" src="/talking.gif" alt="talking"/>
             </div>
-            <div className="modal-v1 gradient-1">
-              <div className="modal-v1-body">
+            <GrModal>
+              <GrModalBody>
                 <div className="connect-title">
                   Channel the Funk within
                 </div>
@@ -127,34 +130,36 @@ const HomePage = () => {
                   Connect your wallet to tap into the MOJO which exists
                   in your Web3 life & rack up FUNKYTM points for Prizes!
                 </p>
-                  <div className="btns-container">
-                    <button
-                      className="connect-btn gradient-1"
-                      onClick={()=>metamaskConnect()}
-                    >
-                      CONNECT WITH
-                      <img className="btn-icon" src="/metamask.png" alt="metamask"/>
-                    </button>
-                    <button
-                      className="connect-btn gradient-1"
-                      onClick={()=>coinbaseConnect()}  
-                    >
-                      CONNECT WITH
-                      <img className="btn-icon" src="/coinbase.png" alt="coinbase"/>
-                    </button>
-                  </div>
-                </div>
-                <div className="btn-container">
-                <button
-                  className="connect-v1-btn gradient-1"
-                  onClick={channelFunc}
-                  disabled={!channelOn}
-                >
-                  Channel the Funk
+                <div className="btns-container">
+                  <button
+                    className="connect-btn gradient-1"
+                    onClick={()=>metamaskConnect()}
+                  >
+                    CONNECT WITH
+                    <img className="btn-icon" src="/metamask.png" alt="metamask"/>
+                  </button>
+                  <button
+                    className="connect-btn gradient-1"
+                    onClick={()=>coinbaseConnect()}  
+                  >
+                    CONNECT WITH
+                    <img className="btn-icon" src="/coinbase.png" alt="coinbase"/>
                   </button>
                 </div>
-              </div>
-            </div>
+              </GrModalBody>
+              <GrModalFooter>
+                <div className="btn-container">
+                  <button
+                    className="connect-v1-btn gradient-1"
+                    onClick={channelFunc}
+                    disabled={!channelOn}
+                  >
+                    Channel the Funk
+                  </button>
+                </div>
+              </GrModalFooter>
+            </GrModal>
+          </div>
         )}
 
         { [0,1,3].includes(step) && <BottomAnime/> }
