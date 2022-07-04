@@ -54,22 +54,6 @@
     margin-bottom: 20px;
   }
 }
-.bottom-bg-container{
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 105vw;
-  height: 50vw;
-  transform: translate(-50%,30%);
-  @include breakpoint(md) {
-    transform: translate(-50%, 40%);
-  }
-  @include breakpoint(xl) {
-    transform: translate(-50%, 60%);
-  }
-  background: url('~/public/hologram_animation.gif') no-repeat 50% 100%/100% auto;
-  pointer-events: none;
-}
 .temp-next-screen{
   position: absolute;
   z-index: 20;

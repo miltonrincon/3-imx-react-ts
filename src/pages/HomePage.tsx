@@ -3,6 +3,7 @@ import WalletHeader from "../components/Wallet/WalletHeader";
 import { useNavigate } from 'react-router-dom';
 import Header from "components/Header/Header";
 import Counter from "components/Counter/Counter";
+import BottomAnime from "components/BottomAnime/BottomAnime";
 
 const HomePage = () => {
   let navigate = useNavigate();
@@ -156,7 +157,7 @@ const HomePage = () => {
             </div>
         )}
 
-        { [0,1,3].includes(step) && <div className="bottom-bg-container"></div> }
+        { [0,1,3].includes(step) && <BottomAnime/> }
 
       </div>
     </React.Fragment>
