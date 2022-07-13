@@ -1,0 +1,21 @@
+@import 'assets/common.scss';
+.dashboard {
+  width: 100%;
+  height: 100vh;
+  background-color: $black;
+}
+.dashboard-content-container{
+  flex: 1 1 auto;
+  height: 100vh;
+}
+.modal-container{
+  position: fixed;
+  padding: $pad-x;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba($black,.7);
+}
