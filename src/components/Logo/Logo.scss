@@ -1,9 +1,11 @@
 @import 'assets/common.scss';
 .logo-container {
   height: 24px;
-  max-width: 100px;
+  width: 100px;
+  // max-width: 100px;
   @include breakpoint(sm){
-    max-width: 120px;
+    width: 120px;
+    // max-width: 120px;
   }
   .logo{
     width: 100%;

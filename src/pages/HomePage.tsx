@@ -232,7 +232,6 @@ const HomePage = () => {
   const channelFunc = () => {
     console.log('Channel the Funk');
     navigate('/dashboard');
-
   }
   const skipVideo = (step: number) => {
     if (vidRef.current) {
