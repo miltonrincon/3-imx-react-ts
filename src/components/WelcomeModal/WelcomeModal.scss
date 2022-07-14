@@ -1,6 +1,9 @@
 @import 'assets/common.scss';
 .modal-container{
   position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
   padding: $pad-x;
   width: 100%;
   height: 100vh;
