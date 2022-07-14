@@ -24,7 +24,7 @@ const HomePage = () => {
   const [loadingMetamaskWallet, setLoadingMetamaskWallet] = useState(false);
   const [status, setStatus] = useState("");
   const [walletAddress, setWalletAddress] = useState<null | string>(null);
-  const metamaskTimer:any = useRef(null);
+  const metamaskTimer: any = useRef(null);
   const [loading, setLoading] = useState(false);
   const [showEmailInput, setShowEmailInput] = useState(false);
   const [user, setUser] = useState({});
@@ -84,7 +84,7 @@ const HomePage = () => {
   const addWalletListener = () => {
     console.log("In Add Wallet Listener");
     if (window.ethereum) {
-      window.ethereum.on("accountsChanged", (accounts:any) => {
+      window.ethereum.on("accountsChanged", (accounts: any) => {
         if (accounts.length > 0) {
           setWalletAddress(accounts[0]);
         } else {
@@ -92,7 +92,7 @@ const HomePage = () => {
           setStatus("NOT_CONNECTED");
         }
       });
-      window.ethereum.on("chainChanged", (chainId:any) => {
+      window.ethereum.on("chainChanged", (chainId: any) => {
         console.log("chainChanged", chainId);
       });
     } else {
@@ -102,7 +102,7 @@ const HomePage = () => {
 
   const metamaskConnect = async () => {
     console.log('metamaskConnect');
-    
+
     const isInstalled = await isMetaMaskInstalled(window);
     console.log("isInstalled", isInstalled);
     if (!isInstalled) {
@@ -144,7 +144,8 @@ const HomePage = () => {
 
   const handleUserNotFound = () => {
     setShowEmailInput(true);
-    chrome.runtime.sendMessage( settingsConfig.EXTENSION_ID?.toString(), {
+    //@ts-ignore
+    chrome.runtime.sendMessage(settingsConfig.EXTENSION_ID?.toString(), {
       "userData": {},
       "token": null,
     });
@@ -182,21 +183,21 @@ const HomePage = () => {
       } else {
         console.log("Error signup: ", signupResponse);
       }
-    } catch (e:any) {
+    } catch (e: any) {
       console.log("Error Sign Up: ", e);
       handleErrorSignUp(e.error);
     }
     setLoading(false);
   };
 
-  const handleErrorSignUp = (error:any) => {
+  const handleErrorSignUp = (error: any) => {
     console.log("handleErrorSignUp: ", error);
     setShowError({ show: true, message: error.message });
   };
 
-  const handleUserLoggedIn = (data:any, token:any) => {
+  const handleUserLoggedIn = (data: any, token: any) => {
     console.log("ext id: ", settingsConfig.EXTENSION_ID);
-    
+    //@ts-ignore
     chrome.runtime.sendMessage(settingsConfig.EXTENSION_ID, {
       userData: data,
       token: token,
@@ -208,9 +209,9 @@ const HomePage = () => {
   };
 
 
-  const coinbaseConnect = async() => {
+  const coinbaseConnect = async () => {
     console.log('coinbaseConnect');
-    
+
     const isInstalled = await isCoinbaseInstalled(window);
     if (!isInstalled) {
       return setShowError({
@@ -233,30 +234,30 @@ const HomePage = () => {
     navigate('/dashboard');
 
   }
-  const skipVideo = (step:number) => {
-    if(vidRef.current) { 
+  const skipVideo = (step: number) => {
+    if (vidRef.current) {
       vidRef.current.pause(); vidRef.current.currentTime = 0;
     }
     nextStep(step);
   }
-  const endVideoIntroduction = (step:number) => {
+  const endVideoIntroduction = (step: number) => {
     nextStep(step);
-    if(vidRef.current) { 
+    if (vidRef.current) {
       vidRef.current.currentTime = 0;
     }
   }
   const startVideoIntroduction = () => {
-    if(vidRef.current) { vidRef.current.play(); }
+    if (vidRef.current) { vidRef.current.play(); }
   }
   useEffect(() => {
-    console.log("step:",step)
-    if(step === 2){
+    console.log("step:", step)
+    if (step === 2) {
       startVideoIntroduction();
     }
   }, [step])
   return (
     <React.Fragment>
-      <Header/>
+      <Header />
       <div className={`start-page-container step-${+step}`}>
 
         {/* {step<3 && (
@@ -276,22 +277,22 @@ const HomePage = () => {
           </Link>
         )} */}
 
-        {[0,1].includes(step) && (
+        {[0, 1].includes(step) && (
           <div className="start-page-content">
             <div className="progress-img-container">
               <img className="progress-img" src="/bluechip.gif" alt="bluechip" />
             </div>
             <h2 className="p-title">Earn Bluechip NFTs with Funky</h2>
-            { step===0 && (
+            {step === 0 && (
               <Counter
-                step = {step}
-                nextStep = {nextStep}
+                step={step}
+                nextStep={nextStep}
               />
             )}
-            { step===1 && (
+            {step === 1 && (
               <button
                 className="start-btn gradient-1"
-                onClick = {()=>nextStep(step)}
+                onClick={() => nextStep(step)}
               >
                 Release the Funk
               </button>
@@ -299,19 +300,19 @@ const HomePage = () => {
           </div>
         )}
 
-        { step===2 && (
+        {step === 2 && (
           <div className="start-page-video-content">
             <video
               ref={vidRef}
               className="intro-video"
-              onEnded= {()=>endVideoIntroduction(step)}
+              onEnded={() => endVideoIntroduction(step)}
             >
               <source src="/tunky_video_1.mp4" type="video/mp4" />
             </video>
             <div className="btn-container">
               <button
                 className="start-btn gradient-1 skip-video"
-                onClick={()=>skipVideo(step)}
+                onClick={() => skipVideo(step)}
               >
                 Skip Video
               </button>
@@ -319,13 +320,14 @@ const HomePage = () => {
           </div>
         )}
 
-        { step===3 && (
+        {step === 3 && (
           <div className="start-page-connect-content">
             <div className="connect-img-container">
-              <img className="connect-img" src="/talking.gif" alt="talking"/>
+              <img className="connect-img" src="/talking.gif" alt="talking" />
             </div>
             <GrModal>
-              <GrModalBody>
+              {!showEmailInput && (<GrModalBody>
+
                 <div className="connect-title">
                   Channel the Funk within
                 </div>
@@ -337,20 +339,41 @@ const HomePage = () => {
                 <div className="btns-container">
                   <button
                     className="connect-btn gradient-1"
-                    onClick={()=>metamaskConnect()}
+                    onClick={() => metamaskConnect()}
                   >
                     CONNECT WITH
-                    <img className="btn-icon" src="/metamask.png" alt="metamask"/>
+                    <img className="btn-icon" src="/metamask.png" alt="metamask" />
                   </button>
                   <button
                     className="connect-btn gradient-1"
-                    onClick={()=>coinbaseConnect()}  
+                    onClick={() => coinbaseConnect()}
                   >
                     CONNECT WITH
-                    <img className="btn-icon" src="/coinbase.png" alt="coinbase"/>
+                    <img className="btn-icon" src="/coinbase.png" alt="coinbase" />
                   </button>
                 </div>
-              </GrModalBody>
+
+
+              </GrModalBody>)}
+              {showEmailInput && (<GrModalBody>
+
+                <div style={{ display: "Grid", justifyContent: "center" }}>
+                  <div className="connect-title"
+                  >
+                    <b> Enter Your Email to Continue</b>
+                  </div>
+                  <form style={{ marginTop: "10px", zIndex: 100 }} >
+                    <input
+                      id="standard-adornment-weight"
+                      className="email-input"
+                      placeholder="Your Email"
+                      onChange={(event) => setEmail(event.target.value)}
+                    />
+                    <input type="button" onClick={handleSignup} value={loading ? "Loading...":"Submit" }/>
+                  </form>
+                </div>
+
+              </GrModalBody>)}
               <GrModalFooter>
                 <div className="btn-container">
                   <button
@@ -366,7 +389,8 @@ const HomePage = () => {
           </div>
         )}
 
-        { [0,1,3].includes(step) && <BottomAnime/> }
+
+        {[0, 1, 3].includes(step) && <BottomAnime />}
 
       </div>
     </React.Fragment>
