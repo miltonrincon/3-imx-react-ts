@@ -13,6 +13,7 @@ const HomePage = () => {
   const vidRef = useRef<HTMLVideoElement>(null);
   const [step, setStep] = useState(0);
   const [channelOn, setChannelOn] = useState(false);
+  const [email, setEmail] = useState('');
   function nextStep(n: number) {
     setStep(n + 1);
   }
@@ -26,6 +27,14 @@ const HomePage = () => {
   }
   const channelFunc = () => {
     console.log('Channel the Funk');
+    nextStep(step);
+  }
+  const saveEmail = (e: React.FormEvent<HTMLInputElement>) => {
+    console.log("e.target::",(e.target as HTMLInputElement).value)
+    setEmail((e.target as HTMLInputElement).value)
+  }
+  const getEmail = () => {
+    console.log('getEmail');
     navigate('/dashboard');
   }
   const skipVideo = (step:number) => {
@@ -42,6 +51,9 @@ const HomePage = () => {
   }
   const startVideoIntroduction = () => {
     if(vidRef.current) { vidRef.current.play(); }
+  }
+  const isValidEmail = (testemail: string) => {
+    return /\S+@\S+\.\S+/.test(testemail);
   }
   useEffect(() => {
     console.log("step:",step)
@@ -161,7 +173,45 @@ const HomePage = () => {
           </div>
         )}
 
-        { [0,1,3].includes(step) && <BottomAnime/> }
+        { step===4 && (
+          <div className="start-page-connect-content">
+            <div className="connect-img-container">
+              <img className="connect-img" src="/talking.gif" alt="talking"/>
+            </div>
+            <GrModal>
+              <GrModalBody>
+                <div className="connect-title">
+                  Enter your Email.
+                </div>
+                <p className="connect-text">
+                  To maintain a trusted means of communication for Funky updates, & alerts, enter your email to finalize your registration!
+                </p>
+                <div className="connect-input-wrapper">
+                  <input 
+                    type="email"
+                    className="input"
+                    placeholder="email@gmail.com"
+                    value={email}
+                    onInput = {(e)=>{saveEmail(e)}}
+                  />
+                </div>
+              </GrModalBody>
+              <GrModalFooter>
+                <div className="btn-container">
+                  <button
+                    className="connect-v1-btn gradient-1"
+                    onClick={getEmail}
+                    disabled={!isValidEmail(email)}
+                  >
+                    Channel The Funk
+                  </button>
+                </div>
+              </GrModalFooter>
+            </GrModal>
+          </div>
+        )}
+
+        { [0,1,3,4].includes(step) && <BottomAnime/> }
 
       </div>
     </React.Fragment>
