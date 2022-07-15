@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate  } from 'react-router-
 import HomePage from "./pages/HomePage";
 import Dashboard from "./pages/Dashboard";
 import "./App.scss";
+import PrivacyPolicy from 'components/Privacy/Privacypolicy';
 function App() {
   const reload = () => window.location.reload();
   return (
@@ -12,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/privacy-policy" element={<Navigate replace={true} to="/privacy-policy.html" />}/> 
+          <Route path="/privacy" element={<PrivacyPolicy values={undefined}/>}/> 
           
         </Routes>
       </Router>
