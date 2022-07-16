@@ -1,7 +1,7 @@
 @import 'assets/common.scss';
 .StatisticsDropdownMenu {
   position: absolute;
-  top: 100%;
+  top: calc( 100% + 5px);
   left: 0;
   box-shadow: 0px 11px 21px 5px #000000;
   border: 3px solid $white;

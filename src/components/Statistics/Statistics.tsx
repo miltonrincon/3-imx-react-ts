@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import StatisticsDropdownMenu from "components/StatisticsDropdownMenu/StatisticsDropdownMenu";
+import CopyContextGr from "components/CopyContextGr/CopyContextGr";
+import Grbutton from "components/Grbutton/Grbutton";
 import { ReactComponent as FunkyIcon } from "assets/icons/funky.svg";
 import { ReactComponent as MailIcon } from "assets/icons/mail.svg";
 import { ReactComponent as DropdownArrowIcon } from "assets/icons/dropdown_arrow_icon.svg";
 import { ReactComponent as DropdownPlusIcon } from "assets/icons/dropdown_plus_icon.svg";
-import { ReactComponent as CopyContext } from "assets/icons/copy_context.svg";
 
 import "./Statistics.scss"
 const Statistics = () => {
@@ -29,6 +30,12 @@ const Statistics = () => {
     if(!myReferalsRef.current.contains(e.target)) {
       setShowReferals(false);
     }
+  }
+  const mintMoreMojo = () => {
+    console.log("mintMoreMojo");
+  }
+  const copyedTextAction = (text: string) => {
+    console.log(text);
   }
   return (
     <div className="Statistics">
@@ -71,9 +78,11 @@ const Statistics = () => {
                 </div>
               </div>
               <div className="drop-footer">
-                <button>
+                <Grbutton
+                  onClick={mintMoreMojo}
+                >
                   Mint more Mojo
-                </button>
+                </Grbutton>
               </div>
             </StatisticsDropdownMenu>
           }
@@ -114,13 +123,12 @@ const Statistics = () => {
                   </div>
                 </div>
               </div>
-              <div className="drop-footer">
-                <button>
+              <div className="drop-footer" onClick={()=>{return null}}>
+                <CopyContextGr
+                  clickTest={copyedTextAction}
+                >
                   .../referral/xun7vkb53z
-                  <CopyContext
-                    onClick={()=>{return null}}
-                  />
-                </button>
+                </CopyContextGr>
               </div>
             </StatisticsDropdownMenu>
           }
