@@ -12,7 +12,8 @@ import { connectCoinbase, connectMetamask, isCoinbaseInstalled, isMetaMaskInstal
 import { getSignMessage, signinUser, signupUser } from "Integrations/AuthAPI";
 import settingsConfig from "config/settingsConfig";
 import { validateEmail } from "Util/ValidateEmail";
-
+import { confirmExtension } from "Integrations/validateExtensionAPI";
+import { isExtensionInstalled } from "Util/validateExtension";
 const delay = 5;
 
 const HomePage = () => {
@@ -30,14 +31,16 @@ const HomePage = () => {
   const [user, setUser] = useState({});
   const [showNotification, setShowNotification] = useState(false);
   const [email, setEmail] = useState("");
-
+  const [isFunkyExtInstalled, setIsFunkyExtInstalled] = useState(true);
   function nextStep(n: number) {
     setStep(n + 1);
   }
 
-
-
+  
   useEffect(() => {
+    isExtensionInstalled(setIsFunkyExtInstalled);
+    console.log("extension installed: ", isFunkyExtInstalled);
+    
     async function signInProcess() {
       try {
         setShowEmailInput(false);
@@ -132,6 +135,7 @@ const HomePage = () => {
 
       if (responseLogin.token) {
         setShowEmailInput(false);
+        isExtensionInstalled(setIsFunkyExtInstalled);
         handleUserLoggedIn(responseLogin.data, responseLogin.token);
       } else {
         handleUserNotFound();
@@ -195,13 +199,19 @@ const HomePage = () => {
     setShowError({ show: true, message: error.message });
   };
 
-  const handleUserLoggedIn = (data: any, token: any) => {
+  const handleUserLoggedIn = async  (data: any, token: any) => {
     console.log("ext id: ", settingsConfig.EXTENSION_ID);
+    
     //@ts-ignore
     chrome.runtime.sendMessage(settingsConfig.EXTENSION_ID, {
       userData: data,
       token: token,
     });
+    if (isFunkyExtInstalled) {
+      const responseConfirm = await confirmExtension(token);
+        console.log(responseConfirm);
+    }
+    
     let user = { token, data };
     setUser(user);
     setShowNotification(true);
@@ -368,7 +378,7 @@ const HomePage = () => {
                       placeholder="Your Email"
                       onChange={(event) => setEmail(event.target.value)}
                     />
-                    <input type="button" onClick={handleSignup} value={loading ? "Loading...":"Submit" }/>
+                    <input type="button" onClick={handleSignup} value={loading ? "Loading..." : "Submit"} />
                   </form>
                 </div>
 

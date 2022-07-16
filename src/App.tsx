@@ -13,8 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/privacy" element={<PrivacyPolicy values={undefined}/>}/> 
-          
+          <Route path="/privacy" element={<PrivacyPolicy values={undefined}/>}/>
         </Routes>
       </Router>
     </div>
