@@ -33,7 +33,6 @@
     background: #272727;
     border-radius: 5px;
     padding: 5px 25px;
-    margin: 0 5px;
     height: 40px;
     display: inline-flex;
     align-items: center;
@@ -67,5 +66,6 @@
   
   .stat-dropdown-wrapper{
     position: relative;
+    margin: 0 5px;
   }
 }

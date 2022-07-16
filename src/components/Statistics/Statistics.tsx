@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from "react";
+import StatisticsDropdownMenu from "components/StatisticsDropdownMenu/StatisticsDropdownMenu";
 import { ReactComponent as FunkyIcon } from "assets/icons/funky.svg";
 import { ReactComponent as MailIcon } from "assets/icons/mail.svg";
 import { ReactComponent as DropdownArrowIcon } from "assets/icons/dropdown_arrow_icon.svg";
 import { ReactComponent as DropdownPlusIcon } from "assets/icons/dropdown_plus_icon.svg";
+import { ReactComponent as CopyContext } from "assets/icons/copy_context.svg";
+
 import "./Statistics.scss"
 const Statistics = () => {
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  },[])
+  const [showStatistics, setShowStatistics] = useState(false);
+  const [showReferals, setShowReferals] = useState(false);
+  const myStatisticsRef = useRef<any>();
+  const myReferalsRef = useRef<any>();
+  const toggleReferals = (prevState: boolean) => {
+    setShowReferals(!prevState)
+  }
+  const toggleStatistics = (prevState: boolean) => {
+    setShowStatistics(!prevState)
+  }
+  const handleClickOutside = (e:any) => {
+    if(!myStatisticsRef.current.contains(e.target)) {
+      setShowStatistics(false);
+    }
+    if(!myReferalsRef.current.contains(e.target)) {
+      setShowReferals(false);
+    }
+  }
   return (
     <div className="Statistics">
       <div className="stat-item">
@@ -12,20 +37,93 @@ const Statistics = () => {
         <div className="stat-box">
           <span className="btn-label">1000 POINTS</span>
         </div>
-        <div className="stat-dropdown-wrapper">
-          <div className="stat-btn pd-sm">
+        <div className="stat-dropdown-wrapper" ref={myStatisticsRef}>
+          <div
+            className="stat-btn pd-sm"
+            onClick={()=>{toggleStatistics(showStatistics)}}
+          >
             <span className="btn-label">2X</span>
             <DropdownArrowIcon className="icon drop-icon"/>
           </div>
+          { showStatistics&&
+            <StatisticsDropdownMenu>
+              <div className="drop-header">
+                <div className="drop-header-title">
+                  Mojo Multiplier Statistics
+                </div>
+              </div>
+              <div className="drop-body">
+                <div>
+                  <div className="stat-value">
+                    2X
+                  </div>
+                  <div className="stat-details">
+                    Multiplier
+                  </div>
+                </div>
+                <div>
+                  <div className="stat-value">
+                    2
+                  </div>
+                  <div className="stat-details">
+                    Mojo Vials
+                  </div>
+                </div>
+              </div>
+              <div className="drop-footer">
+                <button>
+                  Mint more Mojo
+                </button>
+              </div>
+            </StatisticsDropdownMenu>
+          }
         </div>
       </div>
       <div className="stat-item">
         <MailIcon className="stat-icon"/>
-        <div className="stat-dropdown-wrapper">
-          <div className="stat-btn">
+        <div className="stat-dropdown-wrapper" ref={myReferalsRef}>
+          <div
+            className="stat-btn"
+            onClick={()=>{toggleReferals(showReferals)}}
+          >
             <span className="btn-label">5 INVITES</span>
             <DropdownPlusIcon className="icon plus-icon"/>
           </div>
+          { showReferals&&
+            <StatisticsDropdownMenu>
+              <div className="drop-header">
+                <div className="drop-header-title">
+                  Mojo Referrals
+                </div>
+              </div>
+              <div className="drop-body">
+                <div>
+                  <div className="stat-value">
+                    5
+                  </div>
+                  <div className="stat-details">
+                    Invited
+                  </div>
+                </div>
+                <div>
+                  <div className="stat-value">
+                    2
+                  </div>
+                  <div className="stat-details">
+                    Invited
+                  </div>
+                </div>
+              </div>
+              <div className="drop-footer">
+                <button>
+                  .../referral/xun7vkb53z
+                  <CopyContext
+                    onClick={()=>{return null}}
+                  />
+                </button>
+              </div>
+            </StatisticsDropdownMenu>
+          }
         </div>
       </div>
     </div>
