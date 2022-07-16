@@ -39,8 +39,6 @@ const HomePage = () => {
   
   useEffect(() => {
     isExtensionInstalled(setIsFunkyExtInstalled);
-    console.log("extension installed: ", isFunkyExtInstalled);
-    
     async function signInProcess() {
       try {
         setShowEmailInput(false);
@@ -201,7 +199,6 @@ const HomePage = () => {
 
   const handleUserLoggedIn = async  (data: any, token: any) => {
     console.log("ext id: ", settingsConfig.EXTENSION_ID);
-    
     //@ts-ignore
     chrome.runtime.sendMessage(settingsConfig.EXTENSION_ID, {
       userData: data,
@@ -211,7 +208,6 @@ const HomePage = () => {
       const responseConfirm = await confirmExtension(token);
         console.log(responseConfirm);
     }
-    
     let user = { token, data };
     setUser(user);
     setShowNotification(true);
@@ -381,7 +377,6 @@ const HomePage = () => {
                     <input type="button" onClick={handleSignup} value={loading ? "Loading..." : "Submit"} />
                   </form>
                 </div>
-
               </GrModalBody>)}
               <GrModalFooter>
                 <div className="btn-container">
