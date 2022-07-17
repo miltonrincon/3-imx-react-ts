@@ -1,0 +1,10 @@
+@import 'assets/common.scss';
+.DashboardPanelNavigation {
+  flex: 0 0 auto;
+  width: 100px;
+  height: 100%;
+  background: $darkgrey;
+  border: 0 solid $pastel-pink;
+  border-right-width: 7px;
+  box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.25);
+}
