@@ -13,8 +13,9 @@ const HomePage = () => {
   const vidRef = useRef<HTMLVideoElement>(null);
   const [step, setStep] = useState(0);
   const [channelOn, setChannelOn] = useState(false);
-  function nextStep(n: number) {
-    setStep(n + 1);
+  const [email, setEmail] = useState('');
+  function nextStep() {
+    setStep(prev => prev + 1);
   }
   const metamaskConnect = () => {
     console.log('metamaskConnect');
@@ -26,22 +27,32 @@ const HomePage = () => {
   }
   const channelFunc = () => {
     console.log('Channel the Funk');
+    nextStep();
+  }
+  const saveEmail = (e: React.FormEvent<HTMLInputElement>) => {
+    setEmail((e.target as HTMLInputElement).value)
+  }
+  const getEmail = () => {
+    console.log('request to BE>>getEmail');
     navigate('/dashboard');
   }
-  const skipVideo = (step:number) => {
+  const skipVideo = () => {
     if(vidRef.current) { 
       vidRef.current.pause(); vidRef.current.currentTime = 0;
     }
-    nextStep(step);
+    nextStep();
   }
-  const endVideoIntroduction = (step:number) => {
-    nextStep(step);
+  const endVideoIntroduction = () => {
+    nextStep();
     if(vidRef.current) { 
       vidRef.current.currentTime = 0;
     }
   }
   const startVideoIntroduction = () => {
     if(vidRef.current) { vidRef.current.play(); }
+  }
+  const isValidEmail = (testemail: string) => {
+    return /\S+@\S+\.\S+/.test(testemail);
   }
   useEffect(() => {
     console.log("step:",step)
@@ -57,7 +68,7 @@ const HomePage = () => {
         {/* {step<3 && (
           <button
             className="temp-next-screen"
-            onClick={()=>nextStep(step)}
+            onClick={()=>nextStep()}
           >
             next step(just for tests)
           </button>
@@ -86,7 +97,7 @@ const HomePage = () => {
             { step===1 && (
               <button
                 className="start-btn gradient-1"
-                onClick = {()=>nextStep(step)}
+                onClick = {nextStep}
               >
                 Release the Funk
               </button>
@@ -99,14 +110,14 @@ const HomePage = () => {
             <video
               ref={vidRef}
               className="intro-video"
-              onEnded= {()=>endVideoIntroduction(step)}
+              onEnded= {endVideoIntroduction}
             >
               <source src="/tunky_video_1.mp4" type="video/mp4" />
             </video>
             <div className="btn-container">
               <button
                 className="start-btn gradient-1 skip-video"
-                onClick={()=>skipVideo(step)}
+                onClick={skipVideo}
               >
                 Skip Video
               </button>
@@ -161,7 +172,45 @@ const HomePage = () => {
           </div>
         )}
 
-        { [0,1,3].includes(step) && <BottomAnime/> }
+        { step===4 && (
+          <div className="start-page-connect-content">
+            <div className="connect-img-container">
+              <img className="connect-img" src="/talking.gif" alt="talking"/>
+            </div>
+            <GrModal>
+              <GrModalBody>
+                <div className="connect-title">
+                  Enter your Email.
+                </div>
+                <p className="connect-text">
+                  To maintain a trusted means of communication for Funky updates, & alerts, enter your email to finalize your registration!
+                </p>
+                <div className="connect-input-wrapper">
+                  <input 
+                    type="email"
+                    className="input"
+                    placeholder="email@gmail.com"
+                    value={email}
+                    onInput = {(e)=>{saveEmail(e)}}
+                  />
+                </div>
+              </GrModalBody>
+              <GrModalFooter>
+                <div className="btn-container">
+                  <button
+                    className="connect-v1-btn gradient-1"
+                    onClick={getEmail}
+                    disabled={!isValidEmail(email)}
+                  >
+                    Channel The Funk
+                  </button>
+                </div>
+              </GrModalFooter>
+            </GrModal>
+          </div>
+        )}
+
+        { [0,1,3,4].includes(step) && <BottomAnime/> }
 
       </div>
     </React.Fragment>
