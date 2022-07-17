@@ -14,8 +14,8 @@ const HomePage = () => {
   const [step, setStep] = useState(0);
   const [channelOn, setChannelOn] = useState(false);
   const [email, setEmail] = useState('');
-  function nextStep(n: number) {
-    setStep(n + 1);
+  function nextStep() {
+    setStep(prev => prev + 1);
   }
   const metamaskConnect = () => {
     console.log('metamaskConnect');
@@ -27,24 +27,23 @@ const HomePage = () => {
   }
   const channelFunc = () => {
     console.log('Channel the Funk');
-    nextStep(step);
+    nextStep();
   }
   const saveEmail = (e: React.FormEvent<HTMLInputElement>) => {
-    console.log("e.target::",(e.target as HTMLInputElement).value)
     setEmail((e.target as HTMLInputElement).value)
   }
   const getEmail = () => {
-    console.log('getEmail');
+    console.log('request to BE>>getEmail');
     navigate('/dashboard');
   }
-  const skipVideo = (step:number) => {
+  const skipVideo = () => {
     if(vidRef.current) { 
       vidRef.current.pause(); vidRef.current.currentTime = 0;
     }
-    nextStep(step);
+    nextStep();
   }
-  const endVideoIntroduction = (step:number) => {
-    nextStep(step);
+  const endVideoIntroduction = () => {
+    nextStep();
     if(vidRef.current) { 
       vidRef.current.currentTime = 0;
     }
@@ -69,7 +68,7 @@ const HomePage = () => {
         {/* {step<3 && (
           <button
             className="temp-next-screen"
-            onClick={()=>nextStep(step)}
+            onClick={()=>nextStep()}
           >
             next step(just for tests)
           </button>
@@ -98,7 +97,7 @@ const HomePage = () => {
             { step===1 && (
               <button
                 className="start-btn gradient-1"
-                onClick = {()=>nextStep(step)}
+                onClick = {nextStep}
               >
                 Release the Funk
               </button>
@@ -111,14 +110,14 @@ const HomePage = () => {
             <video
               ref={vidRef}
               className="intro-video"
-              onEnded= {()=>endVideoIntroduction(step)}
+              onEnded= {endVideoIntroduction}
             >
               <source src="/tunky_video_1.mp4" type="video/mp4" />
             </video>
             <div className="btn-container">
               <button
                 className="start-btn gradient-1 skip-video"
-                onClick={()=>skipVideo(step)}
+                onClick={skipVideo}
               >
                 Skip Video
               </button>
