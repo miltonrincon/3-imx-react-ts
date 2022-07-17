@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { ReactComponent as CopyContextIcon } from "assets/icons/copy_context.svg";
 import "./CopyContextGr.scss"
 interface CopyContextGrProps {

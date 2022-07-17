@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import StatisticsDropdownMenu from "components/StatisticsDropdownMenu/StatisticsDropdownMenu";
 import CopyContextGr from "components/CopyContextGr/CopyContextGr";
 import Grbutton from "components/Grbutton/Grbutton";
@@ -13,15 +13,17 @@ const Statistics = () => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   },[])
+  // eject points to Context/Redux if it used globally
+  const [points, setPoints] = useState(1000);
   const [showStatistics, setShowStatistics] = useState(false);
   const [showReferals, setShowReferals] = useState(false);
   const myStatisticsRef = useRef<any>();
   const myReferalsRef = useRef<any>();
-  const toggleReferals = (prevState: boolean) => {
-    setShowReferals(!prevState)
+  const toggleReferals = () => {
+    setShowReferals(prev => !prev)
   }
-  const toggleStatistics = (prevState: boolean) => {
-    setShowStatistics(!prevState)
+  const toggleStatistics = () => {
+    setShowStatistics(prev => !prev )
   }
   const handleClickOutside = (e:any) => {
     if(!myStatisticsRef.current.contains(e.target)) {
@@ -32,7 +34,8 @@ const Statistics = () => {
     }
   }
   const mintMoreMojo = () => {
-    console.log("mintMoreMojo");
+    console.log("request to BE/charging mintMoreMojo");
+    setPoints(prev => prev * 2);
   }
   const copyedTextAction = (text: string) => {
     console.log(text);
@@ -42,12 +45,12 @@ const Statistics = () => {
       <div className="stat-item">
         <FunkyIcon className="stat-icon"/>
         <div className="stat-box">
-          <span className="btn-label">1000 POINTS</span>
+          <span className="btn-label">{`${points} POINTS`}</span>
         </div>
         <div className="stat-dropdown-wrapper" ref={myStatisticsRef}>
           <div
             className="stat-btn pd-sm"
-            onClick={()=>{toggleStatistics(showStatistics)}}
+            onClick={toggleStatistics}
           >
             <span className="btn-label">2X</span>
             <DropdownArrowIcon className="icon drop-icon"/>
@@ -93,7 +96,7 @@ const Statistics = () => {
         <div className="stat-dropdown-wrapper" ref={myReferalsRef}>
           <div
             className="stat-btn"
-            onClick={()=>{toggleReferals(showReferals)}}
+            onClick={toggleReferals}
           >
             <span className="btn-label">5 INVITES</span>
             <DropdownPlusIcon className="icon plus-icon"/>

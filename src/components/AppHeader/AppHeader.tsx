@@ -1,4 +1,3 @@
-import React from 'react';
 import Logo from "components/Logo/Logo";
 import Statistics from "components/Statistics/Statistics";
 import Accbox from "components/Accbox/Accbox";

@@ -1,4 +1,3 @@
-import React from "react";
 import "./Grbutton.scss"
 interface GrbuttonProps {
   children?: React.ReactNode,
