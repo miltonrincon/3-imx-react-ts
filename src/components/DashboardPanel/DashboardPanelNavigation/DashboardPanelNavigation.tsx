@@ -1,5 +1,4 @@
 import "./DashboardPanelNavigation.scss"
-
 interface DashboardPanelNavigationProps {
   children?: React.ReactNode;
 }
