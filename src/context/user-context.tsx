@@ -67,6 +67,8 @@ function useUser() {
 export { UserProvider, useUser };
 
 
+// async actions => instruction here
+// https://kentcdodds.com/blog/how-to-use-react-context-effectively
 
 // or divide to two parts
 
