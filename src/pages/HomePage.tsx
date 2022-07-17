@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import WalletHeader from "../components/Wallet/WalletHeader";
 import { useNavigate } from 'react-router-dom';
 import Header from "components/Header/Header";
@@ -7,8 +7,11 @@ import BottomAnime from "components/BottomAnime/BottomAnime";
 import GrModal from "components/GrModal/GrModal";
 import GrModalBody from "components/GrModal/GrModalBody/GrModalBody";
 import GrModalFooter from "components/GrModal/GrModalFooter/GrModalFooter";
+import { useUser } from 'context/user-context';
 
 const HomePage = () => {
+  const {dispatch: userDispatch} = useUser();
+
   let navigate = useNavigate();
   const vidRef = useRef<HTMLVideoElement>(null);
   const [step, setStep] = useState(0);
@@ -34,6 +37,8 @@ const HomePage = () => {
   }
   const getEmail = () => {
     console.log('request to BE>>getEmail');
+    console.log("saved email>>>",email);
+    userDispatch({ type: 'setUserFields', key: 'email', value: email});
     navigate('/dashboard');
   }
   const skipVideo = () => {
