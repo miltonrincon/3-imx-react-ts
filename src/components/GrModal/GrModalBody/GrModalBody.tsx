@@ -1,4 +1,3 @@
-import React from "react";
 import "./GrModalBody.scss"
 
 interface GrModalBodyProps {

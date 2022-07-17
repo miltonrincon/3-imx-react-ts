@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import WelcomeModal from "components/WelcomeModal/WelcomeModal";
 import AppHeader from "components/AppHeader/AppHeader";
 
 
 const Dashboard = () => {
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const [welcomeModal, setWelcomeModal] = useState(true);
   const earnQuest = () => {
     setWelcomeModal(false);

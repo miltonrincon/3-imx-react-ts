@@ -1,4 +1,3 @@
-import React from 'react';
 import GrModal from "components/GrModal/GrModal";
 import GrModalBody from "components/GrModal/GrModalBody/GrModalBody";
 import GrModalFooter from "components/GrModal/GrModalFooter/GrModalFooter";
