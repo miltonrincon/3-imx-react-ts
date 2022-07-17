@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useReducer } from "react";
 
-type Action = {type: string; value?: any;}
+type Action = {type: string; payload?: any, value?: any; key?: any}
 type User = {
   userName?: string,
   email?: string,
@@ -23,10 +23,17 @@ const userReducer = (state: User, action: Action)=> {
   switch (action.type) {
     case "reset":
       return initialState;
-    case 'setUserName': {
+    // case 'setUserName': {
+    //   return {
+    //     ...state,
+    //     userName: action.payload
+    //   }
+    // }
+    case 'setUserFields': {
       return {
         ...state,
-        userName: action.value}
+        [action.key]: action.value
+      }
     }
     default: {
       // return state

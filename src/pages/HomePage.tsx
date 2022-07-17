@@ -38,7 +38,7 @@ const HomePage = () => {
   const getEmail = () => {
     console.log('request to BE>>getEmail');
     console.log("saved email>>>",email);
-    userDispatch({ type: 'setUserName', value: email });
+    userDispatch({ type: 'setUserFields', key: 'email', value: email});
     navigate('/dashboard');
   }
   const skipVideo = () => {
