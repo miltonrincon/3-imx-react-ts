@@ -1,20 +1,32 @@
 @import 'assets/common.scss';
 .dashboard {
   width: 100%;
-  min-height: 100vh;
-  @include breakpoint(xl){
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+  // min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  // @include breakpoint(xl){
+  //   // height: 100vh;
+  //   // display: flex;
+  //   // flex-direction: column;
+  // }
   background: $black;
   padding: 90px 0 0;
 }
 .dashboard-content-container{
+  min-height: 0;
+  flex: 1 1 auto;
   background: $black url('~/public/dash_bg.png') no-repeat 50% 50%/cover;
   min-height: calc(100vh - #{$appHeaderHeight});
+  overflow: auto;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   @include breakpoint(xl){
-    min-height: 0;
-    flex: 1 1 auto;
+  }
+  @media screen and (min-height: 900px) and (min-width: 1200px) {
+    justify-content: center;
   }
 }

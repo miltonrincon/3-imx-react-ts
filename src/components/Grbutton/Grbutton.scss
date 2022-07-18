@@ -37,7 +37,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 2px;
+    padding: 4px;
     background: linear-gradient(135deg,
                             #E8A3FF 0%,
                             #A8BFFF 15%,
@@ -55,7 +55,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 2px;
+    padding: 4px;
     background-color: $copy-text-color;
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
