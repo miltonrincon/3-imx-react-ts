@@ -1,4 +1,3 @@
-import React from "react";
 import "./BottomAnime.scss"
 const BottomAnime = () => {
   return (
