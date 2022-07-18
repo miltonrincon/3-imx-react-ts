@@ -1,5 +1,9 @@
 @import 'assets/common.scss';
 .DashboardHome {
+  @include breakpoint(lg-down){
+    // TODO: responsive design
+    display: none;
+  }
   background: $black;
   display: grid;
   grid-template-columns: 1fr 1fr;
