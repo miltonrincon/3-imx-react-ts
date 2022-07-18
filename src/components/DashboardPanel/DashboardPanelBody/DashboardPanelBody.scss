@@ -1,7 +1,8 @@
 @import 'assets/common.scss';
 .DashboardPanelBody {
   flex: 1 1 auto;
-  &.dash-home {
-    background: $black;
-  }
+  // &.dash-home {
+  //   background: $black;
+  // }
+  padding: $dash-panel-bw $dash-panel-bw $dash-panel-bw 0;
 }

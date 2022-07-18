@@ -1,0 +1,58 @@
+@import 'assets/common.scss';
+.DashboardHome {
+  background: $black;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0;
+  height: 100%;
+  .l-container{
+    min-height: 0;
+    padding: 40px 40px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  .r-container{
+    min-height: 0;
+    padding: 40px 15px 40px;
+    background: $black url('~/public/dash_home_r_bg.png') no-repeat 50% 100%/ 100% auto;
+  }
+  .top-container{
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    .Grbutton{
+      white-space: nowrap;
+    }
+    .top-title{
+      font-family: 'Sarpanch';
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 1.06;
+      color: $white;
+      word-break: break-word;
+      margin-right: 10px;
+    }
+  }
+  .anime-img-container{
+    min-height: 0;
+    flex: 0 0 auto;
+    width: 85%;
+    margin: 0 auto;
+    .anime-img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+  .l-list{
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+  .HomeListItem{
+    &:not(:last-child){
+      margin-bottom: 22px;
+    }
+  }
+}

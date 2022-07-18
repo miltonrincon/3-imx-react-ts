@@ -5,9 +5,9 @@ interface GrbuttonProps {
 }
 const Grbutton = ({children, onClick}:GrbuttonProps) => {
   return (
-    <div className="Grbutton" onClick={onClick}>
+    <button className="Grbutton" onClick={onClick}>
       {children}
-    </div>
+    </button>
   )
 }
 // TODO: errors/success/iconf/etc

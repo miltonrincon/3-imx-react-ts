@@ -5,46 +5,47 @@ import { ReactComponent as DashVialIcon } from "assets/icons/dash_nav_vial.svg";
 import { ReactComponent as DashRewardsIcon } from "assets/icons/dash_nav_rewards.svg";
 import { ReactComponent as DashInvitesIcon } from "assets/icons/dash_nav_invites.svg";
 
-import DashboardHome from 'components/DashboardHome/DashboardHome';
-import DashboardVial from 'components/DashboardVial/DashboardVial';
-import DashboardQuest from 'components/DashboardQuest/DashboardQuest';
-import DashboardInventory from 'components/DashboardInventory/DashboardInventory';
-import DashboardRewards from 'components/DashboardRewards/DashboardRewards';
-import DashboardInvites from 'components/DashboardInvites/DashboardInvites';
+import DashboardHome from 'components/Dashboard/DashboardHome/DashboardHome';
+import DashboardVial from 'components/Dashboard/DashboardVial/DashboardVial';
+import DashboardQuest from 'components/Dashboard/DashboardQuest/DashboardQuest';
+import DashboardInventory from 'components/Dashboard/DashboardInventory/DashboardInventory';
+import DashboardRewards from 'components/Dashboard/DashboardRewards/DashboardRewards';
+import DashboardInvites from 'components/Dashboard/DashboardInvites/DashboardInvites';
 
+export const DASHBOARD_PATH = '/dashboard';
 export const dashRoutes = [
   {
-    to: '/dashboard/home',
+    to: '/home',
     iconComponent: DashHomeIcon,
     label: 'home',
     component: DashboardHome
   },
   {
-    to: '/dashboard/vial',
+    to: '/vial',
     iconComponent: DashVialIcon,
     label: 'vial',
     component: DashboardVial
   },
   {
-    to: '/dashboard/quest',
+    to: '/quest',
     iconComponent: DashQuestIcon,
     label: 'quest',
     component: DashboardQuest
   },
   {
-    to: '/dashboard/inventory',
+    to: '/inventory',
     iconComponent: DashInventoryIcon,
     label: 'inventory',
     component: DashboardInventory
   },
   {
-    to: '/dashboard/rewards',
+    to: '/rewards',
     iconComponent: DashRewardsIcon,
     label: 'rewards',
     component: DashboardRewards
   },
   {
-    to: '/dashboard/invites',
+    to: '/invites',
     iconComponent: DashInvitesIcon,
     label: 'invites',
     component: DashboardInvites

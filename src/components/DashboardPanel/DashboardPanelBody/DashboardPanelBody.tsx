@@ -1,11 +1,11 @@
 import "./DashboardPanelBody.scss"
 
 interface DashboardPanelBodyProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 const DashboardPanelBody = ({children}:DashboardPanelBodyProps) => {
   return (
-    <div className="DashboardPanelBody dash-home">
+    <div className="DashboardPanelBody">
       {children}
     </div>
   )

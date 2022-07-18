@@ -8,10 +8,12 @@ import DashboardPanelNavigation from "components/DashboardPanel/DashboardPanelNa
 import DashboardPanelBody from "components/DashboardPanel/DashboardPanelBody/DashboardPanelBody";
 import AppHeader from "components/AppHeader/AppHeader";
 import DashNavItem from "components/DashboardPanel/DashNavItem/DashNavItem";
-import {dashRoutes} from 'routes/dashboardRoutes';
+import {dashRoutes, DASHBOARD_PATH} from 'routes/dashboardRoutes';
+import DashboardHome from 'components/Dashboard/DashboardHome/DashboardHome';
 
 const Dashboard = () => {
   const location = useLocation();
+  console.log(location)
   const [welcomeModal, setWelcomeModal] = useState(true);
   const earnQuest = () => {
     setWelcomeModal(false);
@@ -25,15 +27,15 @@ const Dashboard = () => {
         <div className="dashboard-content-container">
           <DashboardPanel>
             <DashboardPanelNavigation>
-              {dashRoutes.map(el=>(
-                <DashNavItem
+              {dashRoutes.map(el=>{
+                return (<DashNavItem
                   key = {el.label}
                   icon = {<el.iconComponent className="nav-icon"/>}
-                  to = {el.to}
+                  to = {`${DASHBOARD_PATH}${el.to}`}
                   label = {el.label}
-                  active = { el.to === location.pathname }
-                />
-              ))}
+                  active = { `${DASHBOARD_PATH}${el.to}` === location.pathname }
+                />)
+              })}
             </DashboardPanelNavigation>
             <DashboardPanelBody>
               <Routes>
@@ -44,6 +46,7 @@ const Dashboard = () => {
                     element={<el.component/>}
                   />
                 ))}
+                <Route path="/home" element={<DashboardHome />} />
               </Routes>
             </DashboardPanelBody>
           </DashboardPanel>
