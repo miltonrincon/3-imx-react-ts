@@ -39,7 +39,7 @@ const HomePage = () => {
     console.log('request to BE>>getEmail');
     console.log("saved email>>>",email);
     userDispatch({ type: 'setUserFields', key: 'email', value: email});
-    navigate('/dashboard');
+    navigate('/dashboard/home');
   }
   const skipVideo = () => {
     if(vidRef.current) { 
