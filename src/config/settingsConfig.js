@@ -8,6 +8,7 @@ const settingsConfig = {
   TITILE: process.env.REACT_HALMENT_TITLE,
   DESCRIPTION: process.env.REACT_HALMENT_DESCRIPTION,
   EXTENSION_ID: process.env.REACT_APP_FUNKY_EXTENSION_ID,
+  ENVIRONMENT: process.env.REACT_APP_ENVIRONMENT,
 };
 
 export default settingsConfig;

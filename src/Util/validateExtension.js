@@ -1,13 +1,16 @@
 /* global chrome*/
-import settingsConfig from "config/settingsConfig";
 
-export const isExtensionInstalled = (setIsFunkyExtInstalled) =>{
+export const isExtensionInstalled = (extensionId) =>{
   let installed = true
-  chrome.runtime.sendMessage(settingsConfig.EXTENSION_ID, null, (response) => {
+  try {
+    chrome.runtime.sendMessage(extensionId, null, (response) => {
     if (!response) {
       console.log('No extension');
       installed= false;
     }
   });
-  setIsFunkyExtInstalled(installed);
+  } catch (error) {
+    installed= false
+  }
+  return installed;
 }

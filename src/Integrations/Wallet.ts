@@ -13,6 +13,15 @@ const PROVIDERS = {
 	COINBASE: "CoinBase"
 }
 
+export const CHAINS = {
+	MAINNET: "0x1",
+	KOVAN: "0x42",
+	ROPSTEN: "0x3",
+	RINKEBY: "0x4",
+	GOERLI: "0x5",
+}
+
+
 const connectWallet = async(_window:any, providerName = PROVIDERS.METAMASK):Promise<{status:string, address:any, error:any|undefined }> => {
 	const {ethereum} = _window;
 
@@ -166,5 +175,33 @@ export const signMessage = async (_window:any, message:any) => {
 	}
 };
 
+export const getConnectedEthereumProvider = (_window:any) => {
+	try {
+		if (_window.ethereum) {
+			return new ethers.providers.Web3Provider(_window.ethereum)
+		} else {
+			return {
+				address: "",
+				status: STATUS.NOT_INSTALLED,
+				error: null
+			}
+		}
+		
+	} catch (error) {
+		return {error}
+	}
+}
 
+export const getEthereumChain = (_window:any) => {
+	try {
+		if (_window.ethereum) {
+			const provider = new ethers.providers.Web3Provider(_window.ethereum)
+			//@ts-ignore
+			return provider?.provider?.chainId
+		}
+	} catch (e) {
+		console.log("Error get Ethereum Chain: ", e)
+		return null
+	}
+}
 

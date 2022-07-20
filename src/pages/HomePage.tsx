@@ -14,6 +14,9 @@ import settingsConfig from "config/settingsConfig";
 import { validateEmail } from "Util/ValidateEmail";
 import { confirmExtension } from "Integrations/validateExtensionAPI";
 import { isExtensionInstalled } from "Util/validateExtension";
+import Alert from "components/Alert/Alert";
+import { saveUserDataLocal } from "Integrations/LocalStorage";
+import { ToastContainer, toast } from 'react-toastify';
 const delay = 5;
 
 const HomePage = () => {
@@ -21,7 +24,7 @@ const HomePage = () => {
   const vidRef = useRef<HTMLVideoElement>(null);
   const [step, setStep] = useState(0);
   const [channelOn, setChannelOn] = useState(false);
-  const [showError, setShowError] = useState({ show: false, message: "" });
+  const [showError, setShowError] = useState<{ show: boolean, message: string, type: string, link: string | null }>({ show: false, message: "", type: "", link: null });
   const [loadingMetamaskWallet, setLoadingMetamaskWallet] = useState(false);
   const [status, setStatus] = useState("");
   const [walletAddress, setWalletAddress] = useState<null | string>(null);
@@ -36,9 +39,9 @@ const HomePage = () => {
     setStep(n + 1);
   }
 
-  
+
   useEffect(() => {
-    isExtensionInstalled(setIsFunkyExtInstalled);
+    setIsFunkyExtInstalled(isExtensionInstalled(settingsConfig.EXTENSION_ID));
     async function signInProcess() {
       try {
         setShowEmailInput(false);
@@ -66,11 +69,23 @@ const HomePage = () => {
   }, [walletAddress]);
 
   useEffect(() => {
+    if (!isFunkyExtInstalled) {
+      setShowError({
+        show: true,
+        message: "Please install Funky Extension",
+        type: "error",
+        link: "https://chrome.google.com/webstore/detail/dmpahanaghpahmfffoolckhmkhkhjihj"
+      })
+    }
+  }, [isFunkyExtInstalled])
+
+  useEffect(() => {
     metamaskTimer.current = setInterval(() => {
       if (loadingMetamaskWallet) {
         const message =
           "Having issues connecting your wallet? Try refreshing the browser";
-        setShowError({ show: true, message });
+        toast.warn('Having issues connecting your wallet? Try refreshing the browser');
+        //setShowError({ show: true, message, type:"info", link:null });
       }
     }, delay * 1000);
 
@@ -110,6 +125,8 @@ const HomePage = () => {
       return setShowError({
         show: true,
         message: "Please install Metamask Wallet",
+        type: "error",
+        link: "https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn"
       });
     }
     setLoadingMetamaskWallet(true);
@@ -133,7 +150,7 @@ const HomePage = () => {
 
       if (responseLogin.token) {
         setShowEmailInput(false);
-        isExtensionInstalled(setIsFunkyExtInstalled);
+        setIsFunkyExtInstalled(isExtensionInstalled(settingsConfig.EXTENSION_ID));
         handleUserLoggedIn(responseLogin.data, responseLogin.token);
       } else {
         handleUserNotFound();
@@ -156,7 +173,8 @@ const HomePage = () => {
   const handleSignup = async () => {
     const isValidEmail = validateEmail(email);
     if (!isValidEmail) {
-      return setShowError({ show: true, message: "Email not valid" });
+      toast.error("Email not valid")
+      return; //setShowError({ show: true, message: "Email not valid", type: "error", link: null });
     }
     const messageSign = await getSignMessage();
     const response = await signMessage(window, messageSign.message);
@@ -183,6 +201,7 @@ const HomePage = () => {
         setShowEmailInput(false);
         handleUserLoggedIn(signupResponse.data, signupResponse.token);
       } else {
+        toast.error('Error Sign Up');
         console.log("Error signup: ", signupResponse);
       }
     } catch (e: any) {
@@ -194,10 +213,11 @@ const HomePage = () => {
 
   const handleErrorSignUp = (error: any) => {
     console.log("handleErrorSignUp: ", error);
-    setShowError({ show: true, message: error.message });
+    toast.error(`Error: ${error}`);
+    //setShowError({ show: true, message: error.message, type: "error", link: null });
   };
 
-  const handleUserLoggedIn = async  (data: any, token: any) => {
+  const handleUserLoggedIn = async (data: any, token: any) => {
     console.log("ext id: ", settingsConfig.EXTENSION_ID);
     //@ts-ignore
     chrome.runtime.sendMessage(settingsConfig.EXTENSION_ID, {
@@ -206,9 +226,11 @@ const HomePage = () => {
     });
     if (isFunkyExtInstalled) {
       const responseConfirm = await confirmExtension(token);
-        console.log(responseConfirm);
+      console.log(responseConfirm);
     }
     let user = { token, data };
+    console.log("User data: ", data);
+    saveUserDataLocal(data, token, settingsConfig.ORGANIZATION_ID);
     setUser(user);
     setShowNotification(true);
     setLoading(false);
@@ -223,6 +245,8 @@ const HomePage = () => {
       return setShowError({
         show: true,
         message: "Please install Coinbase Wallet",
+        type: "error",
+        link: "https://chrome.google.com/webstore/detail/coinbase-wallet-extension/hnfanknocfeofbddgcijnmhnfnkdnaad"
       });
     }
     if (!walletAddress) {
@@ -281,7 +305,22 @@ const HomePage = () => {
             next step(just for tests)
           </Link>
         )} */}
-
+        {
+          showError.show && (
+            <Alert message={showError.message} type={showError.type} link={showError.link} />
+          )
+        }
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         {[0, 1].includes(step) && (
           <div className="start-page-content">
             <div className="progress-img-container">
