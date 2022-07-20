@@ -10,6 +10,7 @@
   grid-gap: 0;
   height: 100%;
   .l-container{
+    min-width: 0;
     min-height: 0;
     padding: 50px 40px 0;
     display: flex;
@@ -19,12 +20,14 @@
     }
   }
   .r-container{
+    min-width: 0;
     min-height: 0;
     padding: 50px 15px 60px;
     background: $black url('~/public/dash_home_r_bg.png') no-repeat 50% 100%/ 100% auto;
     @include breakpoint(under1400) {
       padding: 40px 25px 50px;
     }
+    color: $white;
   }
   .top-container{
     flex: 0 0 auto;

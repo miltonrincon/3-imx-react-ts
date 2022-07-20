@@ -1,4 +1,5 @@
 import React, { useState} from 'react';
+import SpiredSlider from "components/SpiredSlider/SpiredSlider";
 import Grbutton from "components/Grbutton/Grbutton";
 import HomeListItem from "./HomeListItem/HomeListItem";
 import { Scrollbars } from 'react-custom-scrollbars-2';
@@ -22,8 +23,13 @@ const DashboardHome = () => {
     {id:10, img: '/list-item-img.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'},
     {id:11, img: '/list-item-img.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'}
   ]
+  const mojoSliderData = [
+
+  ]
   const [listDataArr, setListDataArr] = useState(fakeDataArr)
   return (
+    <React.Fragment>
+    
     <div className="DashboardHome">
       <div className="l-container">
         <div className="top-container">
@@ -63,8 +69,10 @@ const DashboardHome = () => {
             View All Mojo Vials
           </Grbutton>
         </div>
+        <SpiredSlider/>
       </div>
     </div>
+    </React.Fragment>
   )
 }
 
