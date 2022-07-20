@@ -1,16 +1,17 @@
 import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal } from "react"
 import "./HomeListItem.scss"
 interface ItemDataProps {
-  img: string | undefined,
-  title: string | undefined,
-  t1: string | undefined,
-  t2: string | undefined,
-  price: string | number | null | undefined,
-  textPrice: string | undefined,
-  currency: string | undefined
+  data:{
+    img: string | undefined,
+    title: string | undefined,
+    t1: string | undefined,
+    t2: string | undefined,
+    price: string | number | null | undefined,
+    textPrice: string | undefined,
+    currency: string | undefined
+  }
 }
-const HomeListItem = ({data}: any) => {
-  console.log("data:",data)
+const HomeListItem = ({data}: ItemDataProps) => {
   return (
     <div className="HomeListItem"
     >

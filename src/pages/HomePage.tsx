@@ -11,13 +11,15 @@ import { useUser } from 'context/user-context';
 
 const HomePage = () => {
   const {dispatch: userDispatch} = useUser();
-
   let navigate = useNavigate();
   const vidRef = useRef<HTMLVideoElement>(null);
   const [step, setStep] = useState(0);
   const [channelOn, setChannelOn] = useState(false);
   const [email, setEmail] = useState('');
-  function nextStep() {
+  useEffect(() => {
+    return () => setStep(0)
+  },[])
+  const nextStep = () => {
     setStep(prev => prev + 1);
   }
   const metamaskConnect = () => {

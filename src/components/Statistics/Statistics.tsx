@@ -56,7 +56,9 @@ const Statistics = () => {
             <DropdownArrowIcon className="icon drop-icon"/>
           </div>
           { showStatistics&&
-            <StatisticsDropdownMenu>
+            <StatisticsDropdownMenu
+              align="center"
+            >
               <div className="drop-header">
                 <div className="drop-header-title">
                   Mojo Multiplier Statistics

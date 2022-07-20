@@ -10,15 +10,24 @@
   grid-gap: 0;
   height: 100%;
   .l-container{
+    min-width: 0;
     min-height: 0;
-    padding: 40px 40px 40px;
+    padding: 50px 40px 0;
     display: flex;
     flex-direction: column;
+    @include breakpoint(under1400) {
+      padding: 40px 25px 0;
+    }
   }
   .r-container{
+    min-width: 0;
     min-height: 0;
-    padding: 40px 15px 40px;
+    padding: 50px 15px 60px;
     background: $black url('~/public/dash_home_r_bg.png') no-repeat 50% 100%/ 100% auto;
+    @include breakpoint(under1400) {
+      padding: 40px 25px 50px;
+    }
+    color: $white;
   }
   .top-container{
     flex: 0 0 auto;
@@ -35,6 +44,10 @@
       color: $white;
       word-break: break-word;
       margin-right: 10px;
+      @include breakpoint(under1400) {
+        font-size: 32px;
+        margin-right: 5px;
+      }
     }
   }
   .anime-img-container{
@@ -50,9 +63,11 @@
     }
   }
   .l-list{
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
+    // DONT NEED ANY STYLES IF USED CUSTOMSCROLLLIBRARY
+    // display: flex;
+    // flex-direction: column;
+    // overflow: auto;
+    // max-height: 345px;
   }
   .HomeListItem{
     &:not(:last-child){

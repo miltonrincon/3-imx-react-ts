@@ -13,7 +13,7 @@
   transition: background-color $transitionTime ease-in-out;
   position: relative;
   &:hover {
-    background: $copy-text-color;
+    background: $white;
     .copy-text-input{
       color: $black;
     }
@@ -50,7 +50,7 @@
     inset: 0;
     border-radius: inherit;
     padding: 2px;
-    background-color: $copy-text-color;
+    background-color: $white;
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;

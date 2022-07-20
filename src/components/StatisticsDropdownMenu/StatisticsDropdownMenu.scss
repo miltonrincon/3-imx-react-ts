@@ -2,12 +2,18 @@
 .StatisticsDropdownMenu {
   position: absolute;
   top: calc( 100% + 5px);
-  left: 0;
   box-shadow: 0px 11px 21px 5px #000000;
   border: 3px solid $white;
   box-shadow: 0px 11px 21px 5px $black;
   border-radius: 10px;
   min-width: 300px;
+  &.left{
+    left: 0;
+  }
+  &.center{
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
   .drop-header{
     background-color: $black;
     padding: 20px 20px 5px;

@@ -4,7 +4,7 @@ import GrModalFooter from "components/GrModal/GrModalFooter/GrModalFooter";
 import "./WelcomeModal.scss"
 const WelcomeModal = ({onSubmit}: { onSubmit: Function }) => {
   return (
-    <div className="modal-container">
+    <div className="modal-container step-welcome-dashboard">
       <div className="connect-img-container">
         <img className="connect-img" src="/talking.gif" alt="talking"/>
       </div>

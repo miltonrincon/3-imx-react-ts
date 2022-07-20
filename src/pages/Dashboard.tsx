@@ -13,7 +13,7 @@ import DashboardHome from 'components/Dashboard/DashboardHome/DashboardHome';
 
 const Dashboard = () => {
   const location = useLocation();
-  console.log(location)
+  // console.log(location)
   const [welcomeModal, setWelcomeModal] = useState(true);
   const earnQuest = () => {
     setWelcomeModal(false);
