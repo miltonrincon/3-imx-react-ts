@@ -16,7 +16,7 @@ import { confirmExtension } from "Integrations/validateExtensionAPI";
 import { isExtensionInstalled } from "Util/validateExtension";
 import Alert from "components/Alert/Alert";
 import { saveUserDataLocal } from "Integrations/LocalStorage";
-import { ToastContainer, toast } from 'react-toastify';
+import { Notify } from "Util/Notify";
 const delay = 5;
 
 const HomePage = () => {
@@ -84,10 +84,10 @@ const HomePage = () => {
       if (loadingMetamaskWallet) {
         const message =
           "Having issues connecting your wallet? Try refreshing the browser";
-        toast.warn('Having issues connecting your wallet? Try refreshing the browser');
+        Notify.warning('Having issues connecting your wallet? Try refreshing the browser');
         //setShowError({ show: true, message, type:"info", link:null });
       }
-    }, delay * 1000);
+    }, delay * 3000);
 
     // clear on component unmount
     return () => {
@@ -173,7 +173,7 @@ const HomePage = () => {
   const handleSignup = async () => {
     const isValidEmail = validateEmail(email);
     if (!isValidEmail) {
-      toast.error("Email not valid")
+      Notify.error("Email not valid")
       return; //setShowError({ show: true, message: "Email not valid", type: "error", link: null });
     }
     const messageSign = await getSignMessage();
@@ -201,7 +201,7 @@ const HomePage = () => {
         setShowEmailInput(false);
         handleUserLoggedIn(signupResponse.data, signupResponse.token);
       } else {
-        toast.error('Error Sign Up');
+        Notify.error('Error Sign Up');
         console.log("Error signup: ", signupResponse);
       }
     } catch (e: any) {
@@ -213,7 +213,7 @@ const HomePage = () => {
 
   const handleErrorSignUp = (error: any) => {
     console.log("handleErrorSignUp: ", error);
-    toast.error(`Error: ${error}`);
+    Notify.error(`Error: ${error}`);
     //setShowError({ show: true, message: error.message, type: "error", link: null });
   };
 
@@ -310,17 +310,6 @@ const HomePage = () => {
             <Alert message={showError.message} type={showError.type} link={showError.link} />
           )
         }
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
         {[0, 1].includes(step) && (
           <div className="start-page-content">
             <div className="progress-img-container">
