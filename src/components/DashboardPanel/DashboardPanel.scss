@@ -1,5 +1,6 @@
 @import 'assets/common.scss';
 .DashboardPanel {
+  display: flex;
   position: relative;
   background: #000000;
   box-shadow: -2px 13px 11px rgba(47, 47, 47, 0.5);
@@ -7,11 +8,12 @@
   border: none;
   width: 80%;
   min-width: 0;
-  max-width: 1160px;
   height: 100%;
-  max-height: 80%;
   min-height: 600px; //under testing
-  display: flex;
+  // max-height: 80%; //for fit to screen height version
+  // fixed dashboardPanel size
+  max-width: 1160px;
+  max-height: 778px;
   &:before {
     content: "";
     position: absolute;

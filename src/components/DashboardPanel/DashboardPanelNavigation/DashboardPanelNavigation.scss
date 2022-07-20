@@ -3,7 +3,7 @@
   $borderWidth: 7px;
   flex: 0 0 auto;
   width: calc( 100px + ( 2 * $borderWidth ));
-  height: 100%;
+  // height: 100%; //only if used adaptive height of dashboardpanel
   background: $darkgrey;
   border-width: $borderWidth;
   border-style: solid;

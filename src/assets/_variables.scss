@@ -29,10 +29,14 @@ $lg:						$screen-lg;
 $screen-xl:					1200px;
 $xl:						$screen-xl;
 
+// 0 - 1399
+$screen1440:        1440px;
+$under1400:       $screen1440;    
+
 $pad-x: 15px;
 $pad-y: 15px;
 $maxcontentwidth: 1920px;
-$header-height: 106px;
+$header-height: 90px;
 $appHeaderHeight: 90px;
 $app-background-color: $black;
 $dash-panel-bw: 7px;

@@ -17,8 +17,14 @@
     line-height: 1.5;
     text-align: center;
     color: #FFFFFF;
-    max-width: 405px;
+    max-width: 500px;
     margin: 0 auto 20px;
+    .step-4 &{
+      max-width: 420px
+    }
+    .step-welcome-dashboard &{
+      max-width: 350px
+    }
   }
   .btns-container{
     display: grid;

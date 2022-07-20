@@ -1,6 +1,10 @@
 import React, { useState} from 'react';
 import Grbutton from "components/Grbutton/Grbutton";
 import HomeListItem from "./HomeListItem/HomeListItem";
+
+
+
+import { Scrollbars } from 'react-custom-scrollbars-2';
 import "./DashboardHome.scss"
 
 const DashboardHome = () => {
@@ -15,7 +19,11 @@ const DashboardHome = () => {
     {id:4, img: '/list-item-img.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'},
     {id:5, img: '/list-item-img.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'},
     {id:6, img: '/list-item-img.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'},
-    {id:7, img: '/list-item-img.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'}
+    {id:7, img: '/list-item-img.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'},
+    {id:8, img: '/list-item-img.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'},
+    {id:9, img: '/list-item-img.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'},
+    {id:10, img: '/list-item-img.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'},
+    {id:11, img: '/list-item-img.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'}
   ]
   const [listDataArr, setListDataArr] = useState(fakeDataArr)
   return (
@@ -37,24 +45,14 @@ const DashboardHome = () => {
           </div>
         </div>
         <div className="l-list">
-          {listDataArr.map(el=>(
-            <HomeListItem 
-              key = {el.id}
-              data = {el}
-            />
-          ))}
-          {/* <HomeListItem 
-            data = {itemData}
-          /> */}
-          <div className="HomeListItem">
-
-          </div>
-          <div className="HomeListItem">
-            
-          </div>
-          <div className="HomeListItem">
-            
-          </div>
+          <Scrollbars style={{ height: 345 }}>
+            {listDataArr.map(el=>(
+              <HomeListItem 
+                key = {el.id}
+                data = {el}
+              />
+            ))}
+          </Scrollbars>
         </div>
       </div>
       <div className="r-container">
