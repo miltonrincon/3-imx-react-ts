@@ -1,9 +1,6 @@
 import React, { useState} from 'react';
 import Grbutton from "components/Grbutton/Grbutton";
 import HomeListItem from "./HomeListItem/HomeListItem";
-
-
-
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import "./DashboardHome.scss"
 
