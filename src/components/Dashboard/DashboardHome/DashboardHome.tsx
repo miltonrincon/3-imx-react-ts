@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import SpiredSlider from "components/SpiredSlider/SpiredSlider";
 import Grbutton from "components/Grbutton/Grbutton";
 import HomeListItem from "./HomeListItem/HomeListItem";
@@ -23,10 +23,13 @@ const DashboardHome = () => {
     {id:10, img: '/list-item-img.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'},
     {id:11, img: '/list-item-img.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'}
   ]
-  const mojoSliderData = [
-
-  ]
+  
   const [listDataArr, setListDataArr] = useState(fakeDataArr)
+  // use useEffect for call this listdata for list from BE and setListDataArr method to save into state here
+  // useEffect(() => {
+  //   setListDataArr([....])
+  // }, []);
+  
   return (
     <React.Fragment>
     
