@@ -356,7 +356,7 @@ const HomePage = () => {
               className="intro-video"
               onEnded= {endVideoIntroduction}
             >
-              <source src="/tunky_video_1.mp4" type="video/mp4" />
+              <source src="https://s3.us-west-2.amazonaws.com/dev.org.assets/tunkylanding.mp4" type="video/mp4" />
             </video>
             <div className="btn-container">
               <button
