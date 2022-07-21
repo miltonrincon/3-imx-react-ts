@@ -1,0 +1,35 @@
+@import 'assets/common.scss';
+.DashboardPanel {
+  display: flex;
+  position: relative;
+  background: #000000;
+  box-shadow: -2px 13px 11px rgba(47, 47, 47, 0.5);
+  border-radius: 5px;
+  border: none;
+  width: 80%;
+  min-width: 0;
+  height: 100%;
+  min-height: 600px; //under testing
+  // max-height: 80%; //for fit to screen height version
+  // fixed dashboardPanel size
+  max-width: 1160px;
+  max-height: 778px;
+  &:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: $dash-panel-bw;
+    background: linear-gradient(135deg,
+                            #E8A3FF 0%,
+                            #A8BFFF 20%,
+                            #2EFCA8 40%,
+                            #A8BFFF 60%,
+                            #E8A3FF 80%,
+                            #E8A3FF 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}

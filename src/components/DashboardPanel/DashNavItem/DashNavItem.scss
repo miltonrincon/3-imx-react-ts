@@ -1,0 +1,43 @@
+@import 'assets/common.scss';
+.DashNavItem {
+  width: 70px;
+  height: 70px;
+  background: $black;
+  position: relative;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:not(:last-child){
+    margin-bottom: 15px;
+  }
+  &.active {
+    &:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 3px;
+      background: linear-gradient(135deg,
+                              #E8A3FF 0%,
+                              #A8BFFF 20%,
+                              #2EFCA8 40%,
+                              #A8BFFF 60%,
+                              #E8A3FF 80%,
+                              #E8A3FF 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+  }
+  &:not(.active){
+    .nav-icon {
+      path{
+        fill: $darkgrey;
+        stroke: $darkgrey;
+      }
+    }
+  }
+}

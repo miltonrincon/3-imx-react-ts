@@ -1,0 +1,87 @@
+@import 'assets/common.scss';
+.CopyContextGr {
+  $transitionTime: .6s;
+  @include outline(0);
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: $black;
+  height: 48px;
+  background: $black;
+  border-radius: 31px;
+  cursor: pointer;
+  transition: background-color $transitionTime ease-in-out;
+  position: relative;
+  &:hover {
+    background: $white;
+    .copy-text-input{
+      color: $black;
+    }
+    .copy-context-icon{
+      path{
+        fill: $black;
+      }
+    }
+    &:after {
+      opacity: 1;
+    }
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg,
+                            #E8A3FF 0%,
+                            #A8BFFF 15%,
+                            #2EFCA8 45%,
+                            #A8BFFF 75%,
+                            #E8A3FF 90%,
+                            #E8A3FF 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background-color: $white;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity $transitionTime ease-in-out;
+  }
+  &.mv250{
+    max-width: 250px;
+  }
+  .copy-context-icon{
+    flex: 0 0 auto;
+    path{
+      transition: fill $transitionTime ease-in-out;
+    }
+  }
+  .copy-text-input{
+    @include outline(0);
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: transparent;
+    padding: 0;
+    border: none;
+    font-family: 'Gotham';
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1;
+    color: $copy-text-color;
+    cursor: pointer;
+    transition: color $transitionTime ease-in-out;
+  }
+}

@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 //import { Redirect  } from 'react-router-dom';
 import HomePage from "./pages/HomePage";
@@ -24,7 +23,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/*" element={<Dashboard />} />
           <Route path="/privacy" element={<PrivacyPolicy values={undefined}/>}/>
         </Routes>
       </Router>

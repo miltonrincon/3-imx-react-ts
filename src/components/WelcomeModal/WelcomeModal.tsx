@@ -1,11 +1,10 @@
-import React from 'react';
 import GrModal from "components/GrModal/GrModal";
 import GrModalBody from "components/GrModal/GrModalBody/GrModalBody";
 import GrModalFooter from "components/GrModal/GrModalFooter/GrModalFooter";
 import "./WelcomeModal.scss"
 const WelcomeModal = ({onSubmit}: { onSubmit: Function }) => {
   return (
-    <div className="modal-container">
+    <div className="modal-container step-welcome-dashboard">
       <div className="connect-img-container">
         <img className="connect-img" src="/talking.gif" alt="talking"/>
       </div>

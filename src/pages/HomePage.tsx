@@ -1,5 +1,5 @@
 /*global chrome*/
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import WalletHeader from "../components/Wallet/WalletHeader";
 import { useNavigate } from 'react-router-dom';
 import Header from "components/Header/Header";
@@ -17,7 +17,7 @@ import { isExtensionInstalled } from "Util/validateExtension";
 import Alert from "components/Alert/Alert";
 import { saveUserDataLocal } from "Integrations/LocalStorage";
 import { Notify } from "Util/Notify";
-const delay = 5;
+const delay = 10;
 
 const HomePage = () => {
   let navigate = useNavigate();
@@ -35,8 +35,12 @@ const HomePage = () => {
   const [showNotification, setShowNotification] = useState(false);
   const [email, setEmail] = useState("");
   const [isFunkyExtInstalled, setIsFunkyExtInstalled] = useState(true);
-  function nextStep(n: number) {
-    setStep(n + 1);
+
+  useEffect(() => {
+    return () => setStep(0)
+  },[])
+  const nextStep = () => {
+    setStep(prev => prev + 1);
   }
 
 
@@ -87,7 +91,7 @@ const HomePage = () => {
         Notify.warning('Having issues connecting your wallet? Try refreshing the browser');
         //setShowError({ show: true, message, type:"info", link:null });
       }
-    }, delay * 3000);
+    }, delay * 1000);
 
     // clear on component unmount
     return () => {
@@ -261,22 +265,34 @@ const HomePage = () => {
   }
   const channelFunc = () => {
     console.log('Channel the Funk');
-    navigate('/dashboard');
+    nextStep();
   }
-  const skipVideo = (step: number) => {
-    if (vidRef.current) {
+  const saveEmail = (e: React.FormEvent<HTMLInputElement>) => {
+    setEmail((e.target as HTMLInputElement).value)
+  }
+  const getEmail = () => {
+    console.log('request to BE>>getEmail');
+    console.log("saved email>>>",email);
+    //userDispatch({ type: 'setUserFields', key: 'email', value: email});
+    navigate('/dashboard/home');
+  }
+  const skipVideo = () => {
+    if(vidRef.current) { 
       vidRef.current.pause(); vidRef.current.currentTime = 0;
     }
-    nextStep(step);
+    nextStep();
   }
-  const endVideoIntroduction = (step: number) => {
-    nextStep(step);
-    if (vidRef.current) {
+  const endVideoIntroduction = () => {
+    nextStep();
+    if(vidRef.current) { 
       vidRef.current.currentTime = 0;
     }
   }
   const startVideoIntroduction = () => {
     if (vidRef.current) { vidRef.current.play(); }
+  }
+  const isValidEmail = (testemail: string) => {
+    return /\S+@\S+\.\S+/.test(testemail);
   }
   useEffect(() => {
     console.log("step:", step)
@@ -292,7 +308,7 @@ const HomePage = () => {
         {/* {step<3 && (
           <button
             className="temp-next-screen"
-            onClick={()=>nextStep(step)}
+            onClick={()=>nextStep()}
           >
             next step(just for tests)
           </button>
@@ -325,7 +341,7 @@ const HomePage = () => {
             {step === 1 && (
               <button
                 className="start-btn gradient-1"
-                onClick={() => nextStep(step)}
+                onClick = {nextStep}
               >
                 Release the Funk
               </button>
@@ -338,14 +354,14 @@ const HomePage = () => {
             <video
               ref={vidRef}
               className="intro-video"
-              onEnded={() => endVideoIntroduction(step)}
+              onEnded= {endVideoIntroduction}
             >
               <source src="/tunky_video_1.mp4" type="video/mp4" />
             </video>
             <div className="btn-container">
               <button
                 className="start-btn gradient-1 skip-video"
-                onClick={() => skipVideo(step)}
+                onClick={skipVideo}
               >
                 Skip Video
               </button>
@@ -421,8 +437,45 @@ const HomePage = () => {
           </div>
         )}
 
+        { step===4 && (
+          <div className="start-page-connect-content">
+            <div className="connect-img-container">
+              <img className="connect-img" src="/talking.gif" alt="talking"/>
+            </div>
+            <GrModal>
+              <GrModalBody>
+                <div className="connect-title">
+                  Enter your Email.
+                </div>
+                <p className="connect-text">
+                  To maintain a trusted means of communication for Funky updates, & alerts, enter your email to finalize your registration!
+                </p>
+                <div className="connect-input-wrapper">
+                  <input 
+                    type="email"
+                    className="input"
+                    placeholder="email@gmail.com"
+                    value={email}
+                    onInput = {(e)=>{saveEmail(e)}}
+                  />
+                </div>
+              </GrModalBody>
+              <GrModalFooter>
+                <div className="btn-container">
+                  <button
+                    className="connect-v1-btn gradient-1"
+                    onClick={getEmail}
+                    disabled={!isValidEmail(email)}
+                  >
+                    Channel The Funk
+                  </button>
+                </div>
+              </GrModalFooter>
+            </GrModal>
+          </div>
+        )}
 
-        {[0, 1, 3].includes(step) && <BottomAnime />}
+        { [0,1,3,4].includes(step) && <BottomAnime/> }
 
       </div>
     </React.Fragment>

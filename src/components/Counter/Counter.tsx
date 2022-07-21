@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import "./Counter.scss"
 const Counter = ({step, nextStep}: { step: number, nextStep: Function }) => {
   let timerProgress: any;

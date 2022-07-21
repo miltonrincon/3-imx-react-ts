@@ -78,7 +78,7 @@ const Accbox = () => {
   return (
     <div className="Accbox">
       <div className="user-profile" onClick={handleClick}>
-      <div className="acc-name">{getWalletContent(user.wallet)}</div>
+      <div className="acc-name">{getWalletContent(user?.wallet)}</div>
       <div className="acc-img-container">
         <img className="acc-image" src="/user.png" alt="acc" />
       </div>

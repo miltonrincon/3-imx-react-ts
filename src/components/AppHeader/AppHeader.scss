@@ -1,7 +1,7 @@
 @import 'assets/common.scss';
 .AppHeader{
   padding: 5px $pad-x;
-  position: absolute;
+  position: fixed;
   z-index: 10;
   top: 0;
   left: 0;

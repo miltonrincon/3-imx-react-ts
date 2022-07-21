@@ -14,6 +14,9 @@
   @else if $range == sm-down {@media screen and (max-width: ($md - 1)) { @content; }}
   @else if $range == md-down {@media screen and (max-width: ($lg - 1)) { @content; }}
   @else if $range == lg-down {@media screen and (max-width: ($xl - 1)) { @content; }} 
+
+  // 1200 - 1439  adaptive for small large screen
+  @else if $range == under1400 {@media screen and (min-width: $xl) and (max-width: ($under1400 - 1)) { @content; }}
 }
 
 
