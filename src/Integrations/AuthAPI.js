@@ -9,7 +9,7 @@ export const signinUser = (wallet) => {
 	};
 	return new Promise((resolve, reject) => {
 		axios
-			.post(`${settingsConfig.BASE_API_URL}/auth/signin`, data, {
+			.post(`${settingsConfig.ADMIN_API_URL}/auth/signin`, data, {
 				headers: {
 					"x-api-key": settingsConfig.BACKEND_API_KEY,
 				},
@@ -37,7 +37,7 @@ export const signupUser = (wallet, signature, email, code = null) => {
 	};
 	return new Promise((resolve, reject) => {
 		axios
-			.post(`${settingsConfig.BASE_API_URL}/auth/signup`, data, {
+			.post(`${settingsConfig.ADMIN_API_URL}/auth/signup`, data, {
 				headers: {
 					"x-api-key": settingsConfig.BACKEND_API_KEY,
 				},
@@ -58,7 +58,7 @@ export const getSignMessage = () => {
 	return new Promise((resolve, reject) => {
 		axios
 			.get(
-				`${settingsConfig.BASE_API_URL}/auth/wallet?organizationId=${organizationId}`,
+				`${settingsConfig.ADMIN_API_URL}/auth/wallet?organization=${organizationId}`,
 				{
 					headers: {
 						"x-api-key": settingsConfig.BACKEND_API_KEY,
