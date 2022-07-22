@@ -1,91 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Key } from "react";
 import Slider from 'react-slick';
 import { ReactComponent as PrevIcon } from "assets/icons/slick_prev.svg";
 import { ReactComponent as NextIcon } from "assets/icons/slick_next.svg";
 import "./SpiredSlider.scss"
-const SpiredSlider = () => {
-  const dummySpiredImageDataArr = [
-    {
-      id: 0,
-      imageUrl: "/dummy_slider_image_1.png",
-      name: "Mojo Vial #201",
-      info: [
-        {
-          val: "1.1X",
-          label: "FUNKY MULTIPLIER"
-        },
-        {
-          val: "1/200",
-          label: "RARITY"
-        }
-      ]
-    },
-    {
-      id: 1,
-      imageUrl: "/dummy_slider_image_2.png",
-      name: "Mojo Vial #202",
-      info: [
-        {
-          val: "1.9X",
-          label: "FUNKY MULTIPLIER"
-        },
-        {
-          val: "1/400",
-          label: "RARITY"
-        }
-      ]
-    },
-    {
-      id: 2,
-      imageUrl: "/dummy_slider_image_3.png",
-      name: "Mojo Vial #203",
-      info: [
-        {
-          val: "2.1X",
-          label: "FUNKY MULTIPLIER"
-        },
-        {
-          val: "1/500",
-          label: "RARITY"
-        }
-      ]
-    },
-    {
-      id: 3,
-      imageUrl: "/dummy_slider_image_4.png",
-      name: "Mojo Vial #204",
-      info: [
-        {
-          val: "5.0X",
-          label: "FUNKY MULTIPLIER"
-        },
-        {
-          val: "1/800",
-          label: "RARITY"
-        }
-      ]
-    },
-    {
-      id: 4,
-      imageUrl: "/dummy_slider_image_5.png",
-      name: "Mojo Vial #205",
-      info: [
-        {
-          val: "1.3X",
-          label: "FUNKY MULTIPLIER"
-        },
-        {
-          val: "1/250",
-          label: "RARITY"
-        }
-      ]
-    },
-  ]
-  const [arrData, setArrData] = useState(dummySpiredImageDataArr);
-  // use useEffect for call this data for array from BE and setArrData method to save into state here
-  // useEffect(() => {
-  //   setArrData([....])
-  // }, []);
+const SpiredSlider = ({sliderData, mainSlideHeight=340}:{sliderData: any,mainSlideHeight?: number}) => {
 
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
@@ -156,7 +74,7 @@ const SpiredSlider = () => {
   }
   const SpiredImageSlide = ({imageUrl}: SpiredImageSlideProps) => {
     return (
-      <div className="slide-el-box">
+      <div className="slide-el-box" style={{height: `${mainSlideHeight}px`}}>
         <img className="slide-el-img" src={imageUrl} alt="slider-el" />
       </div>
     );
@@ -202,7 +120,7 @@ const SpiredSlider = () => {
         <Slider
           {...settingsImgSlider}
         >
-          {arrData.map(el=>(
+          {sliderData.map((el: any)=>(
             <SpiredImageSlide key={el.id} imageUrl={el.imageUrl}/>
           ))}
         </Slider>
@@ -211,7 +129,7 @@ const SpiredSlider = () => {
         <Slider
           {...settingsInfoSlider}
         >
-          {arrData.map(el=>(
+          {sliderData.map((el: any)=>(
             <SpiredInfoSlide key={el.id} name={el.name} info={el.info}/>
           ))}
         </Slider>
