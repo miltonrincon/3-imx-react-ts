@@ -25,14 +25,93 @@ const DashboardHome = () => {
   ]
   
   const [listDataArr, setListDataArr] = useState(fakeDataArr)
+
+  const dummySpiredImageDataArr = [
+    {
+      id: 0,
+      imageUrl: "/dummy_slider_image_1.png",
+      name: "Mojo Vial #201",
+      info: [
+        {
+          val: "1.1X",
+          label: "FUNKY MULTIPLIER"
+        },
+        {
+          val: "1/200",
+          label: "RARITY"
+        }
+      ]
+    },
+    {
+      id: 1,
+      imageUrl: "/dummy_slider_image_2.png",
+      name: "Mojo Vial #202",
+      info: [
+        {
+          val: "1.9X",
+          label: "FUNKY MULTIPLIER"
+        },
+        {
+          val: "1/400",
+          label: "RARITY"
+        }
+      ]
+    },
+    {
+      id: 2,
+      imageUrl: "/dummy_slider_image_3.png",
+      name: "Mojo Vial #203",
+      info: [
+        {
+          val: "2.1X",
+          label: "FUNKY MULTIPLIER"
+        },
+        {
+          val: "1/500",
+          label: "RARITY"
+        }
+      ]
+    },
+    {
+      id: 3,
+      imageUrl: "/dummy_slider_image_4.png",
+      name: "Mojo Vial #204",
+      info: [
+        {
+          val: "5.0X",
+          label: "FUNKY MULTIPLIER"
+        },
+        {
+          val: "1/800",
+          label: "RARITY"
+        }
+      ]
+    },
+    {
+      id: 4,
+      imageUrl: "/dummy_slider_image_5.png",
+      name: "Mojo Vial #205",
+      info: [
+        {
+          val: "1.3X",
+          label: "FUNKY MULTIPLIER"
+        },
+        {
+          val: "1/250",
+          label: "RARITY"
+        }
+      ]
+    },
+  ]
+  const [arrData, setArrData] = useState(dummySpiredImageDataArr);
+
   // use useEffect for call this listdata for list from BE and setListDataArr method to save into state here
   // useEffect(() => {
-  //   setListDataArr([....])
+  //  setListDataArr([....])
+  //  setArrData([...])
   // }, []);
   
   return (
-    <React.Fragment>
-    
     <div className="DashboardHome">
       <div className="l-container">
         <div className="top-container">
@@ -72,10 +151,9 @@ const DashboardHome = () => {
             View All Mojo Vials
           </Grbutton>
         </div>
-        <SpiredSlider/>
+        <SpiredSlider sliderData={arrData}/>
       </div>
     </div>
-    </React.Fragment>
   )
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SpiredSlider from "components/SpiredSlider/SpiredSlider";
 import classNames from 'classnames/bind';
 import Grbutton from "components/Grbutton/Grbutton";
 import "./DashboardInventory.scss"
@@ -18,12 +19,93 @@ const DashboardInventory = () => {
   ]
 
   const [gridDataArr, setGridDataArr] = useState(fakeDataArr)
-  const [selectedElement, setSelectedElement] = useState(0)
+  // TODO one array, but after see data structure
+  const dummySpiredImageDataArr = [
+    {
+      id: 0,
+      imageUrl: "/dummy_slider_image_1.png",
+      name: "Mojo Vial #201",
+      info: [
+        {
+          val: "1.1X",
+          label: "FUNKY MULTIPLIER"
+        },
+        {
+          val: "1/200",
+          label: "RARITY"
+        }
+      ]
+    },
+    {
+      id: 1,
+      imageUrl: "/dummy_slider_image_2.png",
+      name: "Mojo Vial #202",
+      info: [
+        {
+          val: "1.9X",
+          label: "FUNKY MULTIPLIER"
+        },
+        {
+          val: "1/400",
+          label: "RARITY"
+        }
+      ]
+    },
+    {
+      id: 2,
+      imageUrl: "/dummy_slider_image_3.png",
+      name: "Mojo Vial #203",
+      info: [
+        {
+          val: "2.1X",
+          label: "FUNKY MULTIPLIER"
+        },
+        {
+          val: "1/500",
+          label: "RARITY"
+        }
+      ]
+    },
+    {
+      id: 3,
+      imageUrl: "/dummy_slider_image_4.png",
+      name: "Mojo Vial #204",
+      info: [
+        {
+          val: "5.0X",
+          label: "FUNKY MULTIPLIER"
+        },
+        {
+          val: "1/800",
+          label: "RARITY"
+        }
+      ]
+    },
+    {
+      id: 4,
+      imageUrl: "/dummy_slider_image_5.png",
+      name: "Mojo Vial #205",
+      info: [
+        {
+          val: "1.3X",
+          label: "FUNKY MULTIPLIER"
+        },
+        {
+          val: "1/250",
+          label: "RARITY"
+        }
+      ]
+    },
+  ]
+  const [arrData, setArrData] = useState(dummySpiredImageDataArr);
+
   // use useEffect for call this listdata for list from BE and setListDataArr method to save into state here
-  // plus pagination fromBE(in request, page, limit, total)
   // useEffect(() => {
-  //   setGridDataArr([....])
+  //  setListDataArr([....])
+  //  setArrData([...])
   // }, []);
+
+  const [selectedElement, setSelectedElement] = useState(0)
   useEffect(() => {
     setSelectedElement(gridDataArr[0].id)
   }, [gridDataArr]);
@@ -50,6 +132,7 @@ const DashboardInventory = () => {
   return (
     <div className="DashboardInventory">
       <div className="l-container">
+        <SpiredSlider sliderData={arrData} mainSlideHeight={385}/>
       </div>
       <div className="r-container">
         <div className="top-container">
