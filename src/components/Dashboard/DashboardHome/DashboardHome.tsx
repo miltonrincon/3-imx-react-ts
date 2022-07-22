@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import SpiredSlider from "components/SpiredSlider/SpiredSlider";
 import Grbutton from "components/Grbutton/Grbutton";
 import HomeListItem from "./HomeListItem/HomeListItem";
@@ -111,49 +112,65 @@ const DashboardHome = () => {
   //  setArrData([...])
   // }, []);
   
+  const notify = () => toast("Notify text!");
+  const notifys = () => toast.success("Notify success text!");
+  const notifyi = () => toast.info("Notify info text!");
+  const notifye= () => toast.error("Notify error text!");
+  const notifyw= () => toast.warning("Notify warning text!");
+
   return (
-    <div className="DashboardHome">
-      <div className="l-container">
-        <div className="top-container">
-          <div className="top-title">
-            Funky Feed
+    <React.Fragment>
+      <div style={{position:'absolute'}}>
+        <button onClick={notify}>Notify text!</button>
+        <button onClick={notifys}>Notify success!</button>
+        <button onClick={notifyi}>Notify info!</button>
+        <button onClick={notifye}>Notify error!</button>
+        <button onClick={notifyw}>Notify warning!</button>
+      </div>
+
+      <div className="DashboardHome">
+        <div className="l-container">
+          <div className="top-container">
+            <div className="top-title">
+              Funky Feed
+            </div>
+            <Grbutton
+              onClick={()=>{}}
+            >
+              Earn Points Faster
+            </Grbutton>
           </div>
-          <Grbutton
-            onClick={()=>{}}
-          >
-            Earn Points Faster
-          </Grbutton>
-        </div>
-        <div className="l-body">
-          <div className="anime-img-container">
-            <img className="anime-img" src="/talking.gif" alt="talking"/>
+          <div className="l-body">
+            <div className="anime-img-container">
+              <img className="anime-img" src="/talking.gif" alt="talking"/>
+            </div>
+          </div>
+          <div className="l-list">
+            <Scrollbars style={{ height: 345 }}>
+              {listDataArr.map(el=>(
+                <HomeListItem 
+                  key = {el.id}
+                  data = {el}
+                />
+              ))}
+            </Scrollbars>
           </div>
         </div>
-        <div className="l-list">
-          <Scrollbars style={{ height: 345 }}>
-            {listDataArr.map(el=>(
-              <HomeListItem 
-                key = {el.id}
-                data = {el}
-              />
-            ))}
-          </Scrollbars>
+        <div className="r-container">
+          <div className="top-container">
+            <div className="top-title">
+              Mojo Multipliers
+            </div>
+            <Grbutton
+              onClick={()=>{}}
+            >
+              View All Mojo Vials
+            </Grbutton>
+          </div>
+          <SpiredSlider sliderData={arrData}/>
         </div>
       </div>
-      <div className="r-container">
-        <div className="top-container">
-          <div className="top-title">
-            Mojo Multipliers
-          </div>
-          <Grbutton
-            onClick={()=>{}}
-          >
-            View All Mojo Vials
-          </Grbutton>
-        </div>
-        <SpiredSlider sliderData={arrData}/>
-      </div>
-    </div>
+    </React.Fragment>
   )
 }
 

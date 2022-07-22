@@ -6,5 +6,7 @@
 
 @import "./pages/HomePage.scss";
 @import "./pages/Dashboard.scss";
-@import "./components/ConnectImage";
+@import "./components/connectImage";
 @import "./components/slick";
+@import "react-toastify/dist/ReactToastify.min.css";
+@import "./components/reactToastify";
