@@ -1,0 +1,18 @@
+@import 'assets/common.scss';
+.DashboardMissions {
+  @include breakpoint(lg-down){
+    // TODO: responsive design
+    display: none;
+  }
+  background: $black;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-gap: 0;
+  height: 100%;
+  .l-container{
+    
+  }
+  .r-container {
+  
+  }
+}

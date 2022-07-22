@@ -131,13 +131,13 @@ const DashboardInventory = () => {
   return (
     <div className="DashboardInventory">
       <div className="l-container">
-        <SpiredSlider sliderData={arrData} mainSlideHeight={385} initialSlide={initialSlideId}/>
+        <SpiredSlider sliderData={arrData} mainSlideHeight={460} initialSlide={initialSlideId}/>
       </div>
       <div className="r-container">
         <div className="top-container">
           {/* TODO: render these elements from array data */}
-          <div className="top-title">My Mojo Vault</div>
-          <div className="top-text">Every Mojo Multiplier you mint will multiply the Passive & Active Funky Points you earn. Mojo Multilpiers perks stack infinitely!</div>
+          <div className="r-title">My Mojo Vault</div>
+          <div className="r-text">Every Mojo Multiplier you mint will multiply the Passive & Active Funky Points you earn. Mojo Multilpiers perks stack infinitely!</div>
         </div>
         <div className="info-data-container">
           <div className="info-data-element">
