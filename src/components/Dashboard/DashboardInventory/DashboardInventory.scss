@@ -1,4 +1,122 @@
 @import 'assets/common.scss';
 .DashboardInventory {
- 
+  @include breakpoint(lg-down){
+    // TODO: responsive design
+    display: none;
+  }
+  background: $black;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-gap: 0;
+  height: 100%;
+  .l-container{
+    min-width: 0;
+    min-height: 0;
+    padding: 5px 60px 80px;
+    background: $black url('~/public/dash_inventory_l_bg.png') no-repeat 50% 100%/ 100% auto;
+    @include breakpoint(under1400) {
+      padding: 5px 250px 60px;
+    }
+  }
+  .r-container {
+    min-width: 0;
+    min-height: 0;
+    padding: 30px 45px 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: $darkgrey;
+    @include breakpoint(under1400) {
+      padding: 30px 25px 30px;
+    }
+  }
+  .top-container{
+    margin-bottom: 10px;
+  }
+  .top-title{
+    font-family: 'Sarpanch';
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.06;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+  }
+  .top-text{
+    font-family: 'Space Mono';
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;
+    color: #FFFFFF;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  .info-data-container{
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+    // justify-content: center;
+  }
+  .info-data-element{
+    min-width: 0;
+    padding: 12px;
+    background: $black;
+    border-radius: 10px;
+    .el-val{
+      font-family: 'Sarpanch';
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 1.06;
+      text-align: center;
+      color: $white;
+      margin-bottom: 5px;
+    }
+    .el-label{
+      font-family: 'Space Mono';
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1.4;
+      text-align: center;
+      color: $white;
+      word-break: break-word;
+    }
+  }
+  .inventory-list-grid{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 10px;
+  }
+  .inventory-grid-element{
+    aspect-ratio: 1;
+    background: $black;
+    border-radius: 10px;
+    &.active{
+      position: relative;
+      &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 4px;
+        background: linear-gradient(135deg,
+                                #E8A3FF 0%,
+                                #A8BFFF 15%,
+                                #2EFCA8 45%,
+                                #A8BFFF 75%,
+                                #E8A3FF 90%,
+                                #E8A3FF 100%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+    }
+  }
+  .inventory-element-image{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center
+  }
 }
