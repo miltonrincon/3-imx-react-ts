@@ -1,0 +1,13 @@
+@import 'assets/common.scss';
+.ProgressBar{
+  height: 20px;
+  background: $black;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  .progress-bar-value{
+    height: 16px;
+    background: linear-gradient(98.75deg, #E8A3FF 14%, #A8BFFF 27.78%, #2EFCA8 40.12%, #A8BFFF 65.87%, #E8A3FF 78.93%);
+    border-radius: 11px;
+  }
+}

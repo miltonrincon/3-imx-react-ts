@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import {DASHBOARD_PATH} from 'routes/dashboardRoutes';
+import ProgressBar from "components/ProgressBar/ProgressBar";
 import "./DashboardQuests.scss"
+
 const DashboardQuests = () => {
   const dummyQuestArray = [
     {id:1, img: '/talking.gif',codename: 'QUEST TREE #1',status: '',name: 'Board the Soul Train'},
-    {id:2, img: '/talking.gif',codename: 'QUEST TREE #2',status: 'LOCKED',name: 'Harnessing The Funk'},
+    {id:2, img: '/talking.gif',codename: 'QUEST TREE #2',status: 'UNCNOWN',name: 'Harnessing The Funk'},
     {id:3, img: '/talking.gif',codename: 'QUEST TREE #3',status: 'LOCKED',name: 'ACTIVITY'},
     {id:4, img: '/talking.gif',codename: 'QUEST TREE #4',status: 'LOCKED',name: 'ACTIVITY'},
     {id:5, img: '/talking.gif',codename: 'QUEST TREE #5',status: 'LOCKED',name: 'ACTIVITY'},
@@ -16,10 +19,15 @@ const DashboardQuests = () => {
 
   // use useEffect for call this listdata for list from BE and setListDataArr method to save into state here
   // useEffect(() => {
-  //  setListDataArr([....])
-  //  setArrData([...])
+  //  setQuestArrayData([....])
   // }, []);
   const [questId, setQuestId] = useState(0);
+  useEffect(() => {
+    setQuestId(questArrayData[0].id)
+  }, [questArrayData]);
+  const isLocked = (status: string) => {
+    return status.toLowerCase()==='locked'
+  }
   return (
     <div className="DashboardQuest">
       <div className="l-container">
@@ -32,7 +40,10 @@ const DashboardQuests = () => {
             <div className="mission-list">
               <div className="mission-list-internal">
                 {questArrayData.map(el=>(
-                  <Link className="mission-item" to={`${DASHBOARD_PATH}/quests/${el.id}/missions`}>
+                  <div
+                    onClick = { isLocked(el.status) || (questId===el.id) ? ()=>null : ()=>setQuestId(el.id) }
+                    className={classNames("mission-item", { disabled: isLocked(el.status), selected: questId===el.id} )}
+                  > {/*to={`${DASHBOARD_PATH}/quests/${el.id}/missions`} */}
                     <div className="item-img-container">
                       <img className="item-img" src={el.img} alt="item" />
                     </div>
@@ -46,7 +57,7 @@ const DashboardQuests = () => {
                         {el.name}
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 ))}
               </div>
             </div>
@@ -54,16 +65,29 @@ const DashboardQuests = () => {
         </Scrollbars>
       </div>
       <div className="r-container">
+        <div className="img-contsiner">
+          <img className="quest-image" src="/quest_img.png" alt="quest" />
+        </div>
         <div className="info-container">
           {/* TODO: render these elements from array data */}
           <div className="r-title">My Mojo Vault</div>
           <div className="r-text">Every Mojo Multiplier you mint will multiply the Passive & Active Funky Points you earn. Mojo Multilpiers perks stack infinitely!</div>
         </div>
-        
+        <div className="progress-container">
+          <ProgressBar val={40} max={100}/>
+          <div className="progress-info">
+            <div className="progress-value">
+              700 / 900
+            </div>
+            <div className="progress-label">
+              POINTS REMAINING 
+            </div>
+          </div>
+        </div>
         <div className="r-btn-container">
-          {/* <Link className="Grbutton" to={`${DASHBOARD_PATH}/mint`}>
-            Mint more Mojo
-          </Link> */}
+          <Link className="Grbutton" to={`${DASHBOARD_PATH}/quests/${questId}/missions`}>
+            Start Quest Tree
+          </Link>
         </div>
       </div>
     </div>
