@@ -25,31 +25,13 @@
     display: flex;
     flex-direction: column;
     background-color: $darkgrey;
+    border-left: 7px solid $pastel-pink;
     @include breakpoint(under1400) {
       padding: 30px 25px 30px;
     }
   }
   .top-container{
     margin-bottom: 10px;
-  }
-  .top-title{
-    font-family: 'Sarpanch';
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 1.06;
-    text-align: center;
-    color: #FFFFFF;
-    margin-bottom: 15px;
-  }
-  .top-text{
-    font-family: 'Space Mono';
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 1.4;
-    text-align: center;
-    color: #FFFFFF;
-    max-width: 90%;
-    margin: 0 auto;
   }
   .info-data-container{
     margin-bottom: 30px;
@@ -86,6 +68,7 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-gap: 10px;
+    margin-bottom: 30px;
   }
   .inventory-grid-element{
     min-width: 0;
@@ -119,5 +102,9 @@
     height: 100%;
     object-fit: contain;
     object-position: center
+  }
+  .r-btn-container{
+    display: flex;
+    justify-content: center;
   }
 }

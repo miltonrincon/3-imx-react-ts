@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import SpiredSlider from "components/SpiredSlider/SpiredSlider";
-import Grbutton from "components/Grbutton/Grbutton";
 import HomeListItem from "./HomeListItem/HomeListItem";
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import {DASHBOARD_PATH} from 'routes/dashboardRoutes';
 import "./DashboardHome.scss"
 
 const DashboardHome = () => {
@@ -26,6 +27,8 @@ const DashboardHome = () => {
   ]
   
   const [listDataArr, setListDataArr] = useState(fakeDataArr)
+
+  const [selectedId, setSelectedId] = useState(0)
 
   const dummySpiredImageDataArr = [
     {
@@ -106,6 +109,10 @@ const DashboardHome = () => {
   ]
   const [arrData, setArrData] = useState(dummySpiredImageDataArr);
 
+  const afterChangeSlideSpiredSlider = (curent:number) => {
+    setSelectedId(arrData[curent].id)
+  }
+
   // use useEffect for call this listdata for list from BE and setListDataArr method to save into state here
   // useEffect(() => {
   //  setListDataArr([....])
@@ -134,11 +141,9 @@ const DashboardHome = () => {
             <div className="top-title">
               Funky Feed
             </div>
-            <Grbutton
-              onClick={()=>{}}
-            >
+            <Link className="Grbutton" to={`${DASHBOARD_PATH}/mint`}>
               Earn Points Faster
-            </Grbutton>
+            </Link>
           </div>
           <div className="l-body">
             <div className="anime-img-container">
@@ -161,13 +166,11 @@ const DashboardHome = () => {
             <div className="top-title">
               Mojo Multipliers
             </div>
-            <Grbutton
-              onClick={()=>{}}
-            >
+            <Link className="Grbutton" to={`${DASHBOARD_PATH}/inventory?id=${selectedId}`}>
               View All Mojo Vials
-            </Grbutton>
+            </Link>
           </div>
-          <SpiredSlider sliderData={arrData}/>
+          <SpiredSlider sliderData={arrData} afterChangeSlide={afterChangeSlideSpiredSlider}/>
         </div>
       </div>
     </React.Fragment>

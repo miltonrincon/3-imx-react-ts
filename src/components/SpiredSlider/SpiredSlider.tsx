@@ -3,7 +3,17 @@ import Slider from 'react-slick';
 import { ReactComponent as PrevIcon } from "assets/icons/slick_prev.svg";
 import { ReactComponent as NextIcon } from "assets/icons/slick_next.svg";
 import "./SpiredSlider.scss"
-const SpiredSlider = ({sliderData, mainSlideHeight=340}:{sliderData: any,mainSlideHeight?: number}) => {
+const SpiredSlider = ({
+  sliderData,
+  afterChangeSlide,
+  initialSlide=0,
+  mainSlideHeight=340
+}:{
+  sliderData: any,
+  afterChangeSlide?:Function,
+  initialSlide?: number
+  mainSlideHeight?: number
+}) => {
 
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
@@ -55,8 +65,10 @@ const SpiredSlider = ({sliderData, mainSlideHeight=340}:{sliderData: any,mainSli
     asNavFor: nav2,
     ref: slider1,
     class: 'imageslider',
+    initialSlide: initialSlide,
     nextArrow: <SpiredSliderNextArrow />,
-    prevArrow: <SpiredSliderPrevArrow />
+    prevArrow: <SpiredSliderPrevArrow />,
+    afterChange: (current: number) => afterChangeSlide&&afterChangeSlide(current)
   };
   const settingsInfoSlider = {
     dots: false,
@@ -68,6 +80,7 @@ const SpiredSlider = ({sliderData, mainSlideHeight=340}:{sliderData: any,mainSli
     arrows: false,
     asNavFor: nav1,
     ref: slider2,
+    initialSlide: initialSlide
   };
   interface SpiredImageSlideProps {
     imageUrl: string

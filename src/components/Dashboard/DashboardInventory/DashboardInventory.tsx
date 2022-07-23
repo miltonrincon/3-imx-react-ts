@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import SpiredSlider from "components/SpiredSlider/SpiredSlider";
 import classNames from 'classnames/bind';
-import Grbutton from "components/Grbutton/Grbutton";
+import { Link } from 'react-router-dom';
+import {DASHBOARD_PATH} from 'routes/dashboardRoutes';
 import "./DashboardInventory.scss"
 const DashboardInventory = () => {
-
-
+  let initialSlideId = Number((new URLSearchParams(window.location.search)).get("id")||0);
   const fakeDataArr = [
     {id:1, img: '/dummy_slider_image_1.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'},
     {id:2, img: '/dummy_slider_image_2.png',title: 'QUEST',t1: 'NFT COLLECTION',t2: 'ACTIVITY',price: 40,textPrice: 'earned',currency: '/currency.svg'},
@@ -120,7 +120,6 @@ const DashboardInventory = () => {
   const InventoryGridElement = ( {id, imageUrl } : InventoryGridElementProps) => {
     return (
       <div
-        key = {id}
         className={ classNames('inventory-grid-element', { active: selectedElement===id }) } 
         onClick={() => selectElement(id)}
       >
@@ -132,13 +131,13 @@ const DashboardInventory = () => {
   return (
     <div className="DashboardInventory">
       <div className="l-container">
-        <SpiredSlider sliderData={arrData} mainSlideHeight={385}/>
+        <SpiredSlider sliderData={arrData} mainSlideHeight={460} initialSlide={initialSlideId}/>
       </div>
       <div className="r-container">
         <div className="top-container">
           {/* TODO: render these elements from array data */}
-          <div className="top-title">My Mojo Vault</div>
-          <div className="top-text">Every Mojo Multiplier you mint will multiply the Passive & Active Funky Points you earn. Mojo Multilpiers perks stack infinitely!</div>
+          <div className="r-title">My Mojo Vault</div>
+          <div className="r-text">Every Mojo Multiplier you mint will multiply the Passive & Active Funky Points you earn. Mojo Multilpiers perks stack infinitely!</div>
         </div>
         <div className="info-data-container">
           <div className="info-data-element">
@@ -153,10 +152,16 @@ const DashboardInventory = () => {
         <div className="inventory-list-grid">
           {gridDataArr.map(el=>(
             <InventoryGridElement
+              key = {el.id}
               id= {el.id}
               imageUrl= {el.img}
             />
           ))}
+        </div>
+        <div className="r-btn-container">
+          <Link className="Grbutton" to={`${DASHBOARD_PATH}/mint`}>
+            Mint more Mojo
+          </Link>
         </div>
       </div>
     </div>

@@ -9,11 +9,12 @@
   width: 80%;
   min-width: 0;
   height: 100%;
-  min-height: 600px; //under testing
+  min-height: 0;
+  height: 778px; //under testing
   // max-height: 80%; //for fit to screen height version
   // fixed dashboardPanel size
   max-width: 1160px;
-  max-height: 778px;
+  // max-height: 778px;
   &:before {
     content: "";
     position: absolute;

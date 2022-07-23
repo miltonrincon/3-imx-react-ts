@@ -5,4 +5,41 @@
   //   background: $black;
   // }
   padding: $dash-panel-bw $dash-panel-bw $dash-panel-bw 0;
+  .r-title{
+    font-family: 'Sarpanch';
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.06;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+  }
+  .r-text{
+    font-family: 'Space Mono';
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;
+    color: #FFFFFF;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  .l-title{
+    font-family: 'Sarpanch';
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.06;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+  }
+  .l-text{
+    font-family: 'Space Mono';
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #FFFFFF;
+    max-width: 90%;
+    margin: 0 auto;
+  }
 }
