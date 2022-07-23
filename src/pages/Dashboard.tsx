@@ -27,7 +27,7 @@ const Dashboard = () => {
         <div className="dashboard-content-container">
           <DashboardPanel>
             <DashboardPanelNavigation>
-              {dashRoutes.map(el=>{
+              {dashRoutes.filter(elem=>elem.nav).map(el=>{
                 return (<DashNavItem
                   key = {el.label}
                   icon = {<el.iconComponent className="nav-icon"/>}

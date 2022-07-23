@@ -18,42 +18,49 @@ export const dashRoutes = [
   {
     to: '/home',
     iconComponent: DashHomeIcon,
+    nav: true,
     label: 'home',
     component: DashboardHome
   },
   {
     to: '/mint',
     iconComponent: DashMintIcon,
+    nav: true,
     label: 'mint',
     component: DashboardMint
   },
   {
     to: '/quests',
     iconComponent: DashQuestsIcon,
+    nav: true,
     label: 'quests',
     component: DashboardQuests
   },
   {
     to: '/quests/:questId/missions',
     iconComponent: DashQuestsIcon,
+    nav: false,
     label: 'missions',
     component: DashboardMissions
   },
   {
     to: '/inventory',
     iconComponent: DashInventoryIcon,
+    nav: true,
     label: 'inventory',
     component: DashboardInventory
   },
   {
     to: '/rewards',
     iconComponent: DashRewardsIcon,
+    nav: true,
     label: 'rewards',
     component: DashboardRewards
   },
   {
     to: '/invites',
     iconComponent: DashInvitesIcon,
+    nav: true,
     label: 'invites',
     component: DashboardInvites
   },

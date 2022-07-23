@@ -74,7 +74,7 @@ const DashboardQuests = () => {
           <div className="r-text">Every Mojo Multiplier you mint will multiply the Passive & Active Funky Points you earn. Mojo Multilpiers perks stack infinitely!</div>
         </div>
         <div className="progress-container">
-          <ProgressBar val={40} max={100}/>
+          <ProgressBar val={700} max={900}/>
           <div className="progress-info">
             <div className="progress-value">
               700 / 900
