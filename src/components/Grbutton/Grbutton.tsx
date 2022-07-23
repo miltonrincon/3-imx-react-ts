@@ -1,4 +1,5 @@
-import "./Grbutton.scss"
+// import "./Grbutton.scss"
+// scss for Grbutton was loaded globally
 interface GrbuttonProps {
   children?: React.ReactNode,
   onClick?: React.MouseEventHandler

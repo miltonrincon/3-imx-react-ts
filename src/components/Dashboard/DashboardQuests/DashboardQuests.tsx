@@ -22,6 +22,7 @@ const DashboardQuests = () => {
   //  setQuestArrayData([....])
   // }, []);
   const [questId, setQuestId] = useState(0);
+  // this questId should be saved in context if you want to have back button on next page with back and selected the same questId
   useEffect(() => {
     setQuestId(questArrayData[0].id)
   }, [questArrayData]);
@@ -41,6 +42,7 @@ const DashboardQuests = () => {
               <div className="mission-list-internal">
                 {questArrayData.map(el=>(
                   <div
+                    key={el.id}
                     onClick = { isLocked(el.status) || (questId===el.id) ? ()=>null : ()=>setQuestId(el.id) }
                     className={classNames("mission-item", { disabled: isLocked(el.status), selected: questId===el.id} )}
                   > {/*to={`${DASHBOARD_PATH}/quests/${el.id}/missions`} */}
@@ -69,7 +71,7 @@ const DashboardQuests = () => {
           <img className="quest-image" src="/quest_img.png" alt="quest" />
         </div>
         <div className="info-container">
-          {/* TODO: render these elements from array data */}
+          {/* TODO: render these elements from array data (after user select and possible autoselect first element)*/}
           <div className="r-title">My Mojo Vault</div>
           <div className="r-text">Every Mojo Multiplier you mint will multiply the Passive & Active Funky Points you earn. Mojo Multilpiers perks stack infinitely!</div>
         </div>

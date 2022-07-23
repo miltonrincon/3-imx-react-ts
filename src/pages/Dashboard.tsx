@@ -25,15 +25,17 @@ const Dashboard = () => {
       <AppHeader/>
       <div className="dashboard">
         <div className="dashboard-content-container">
+          
           <DashboardPanel>
             <DashboardPanelNavigation>
               {dashRoutes.filter(elem=>elem.nav).map(el=>{
+                console.log(location.pathname)
                 return (<DashNavItem
                   key = {el.label}
                   icon = {<el.iconComponent className="nav-icon"/>}
                   to = {`${DASHBOARD_PATH}${el.to}`}
                   label = {el.label}
-                  active = { `${DASHBOARD_PATH}${el.to}` === location.pathname }
+                  active = { location.pathname.includes(`${DASHBOARD_PATH}${el.to}`) }
                 />)
               })}
             </DashboardPanelNavigation>
@@ -50,7 +52,9 @@ const Dashboard = () => {
               </Routes>
             </DashboardPanelBody>
           </DashboardPanel>
+
           {welcomeModal && <WelcomeModal onSubmit={ earnQuest } />}
+
         </div>
       </div>
     </React.Fragment>

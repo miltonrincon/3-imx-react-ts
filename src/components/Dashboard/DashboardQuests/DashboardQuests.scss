@@ -39,6 +39,7 @@
     display: flex;
     flex-direction: column;
     background-color: $darkgrey;
+    border-left: 7px solid $pastel-pink;
     @include breakpoint(under1400) {
       padding: 30px 25px 60px;
     }
